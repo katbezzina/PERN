@@ -1,5 +1,10 @@
-import cors from "cors";
+//Express includes middleware, cors is middleware
 
+import cors from "cors";
+import express from "express";
+import router from "./routes/users.js";
+
+const app = express();
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -8,15 +13,12 @@ app.use(
 );
 app.use(cors());
 
-import express from "express";
+//listening to local host 5000
 
-const app = express();
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log("Server is running on " + port + "port");
 });
-
-import router from "./routes/users.js";
 
 app.use("/users", router);
