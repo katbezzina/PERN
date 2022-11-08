@@ -3,7 +3,7 @@ import LandingPage from "./Views/LandingPage";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <LandingPage />
     </div>
   );
