@@ -1,0 +1,20 @@
+.navigationBottom{
+    margin-left: 85vw;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.noUnderline:link {
+    text-decoration: none;
+}
+
+.noUnderline {
+    color: rgb(67, 66, 66);
+    border-color: rgba(255, 255, 255, 0);
+}
+
+.noUnderline:hover {
+    font-weight: 800;
+    color: rgb(67, 66, 66);
+}
+

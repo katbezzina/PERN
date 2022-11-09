@@ -1,15 +1,22 @@
 .landingpageBackground{
     background-color: rgba(141, 141, 211, 0.493);
+    color: rgba(52, 4, 87, 0.874);
     width: 100vw;
     height: 100vh;
 }
 
+.d-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
 .landingpageLogo{
-    animation: rotation 2s infinite linear;
-    width: 20vw;
+    animation: rotation 3s infinite linear;
+    width: 100px;
     height: auto;
-    margin-top: 35vh;
-    margin-left: 40vw;
 }
 
 @keyframes rotation {
