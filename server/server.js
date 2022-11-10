@@ -2,9 +2,13 @@
 
 import cors from "cors";
 import express from "express";
-import router from "./routes/userRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
+//create express app
 const app = express();
+//initiating router feature and adding it to express app
+const router = express.Router();
+app.use(router);
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -23,4 +27,4 @@ app.listen(port, () => {
 
 //creating a /users route
 
-app.use("/users", router);
+app.use("/users", userRoutes);

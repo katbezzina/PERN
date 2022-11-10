@@ -12,9 +12,9 @@ import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import MenuIcon from '@mui/icons-material/Menu';
+import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import "../Style/NavigationMenu.css"
 import { NavLink, Link } from "react-router-dom";
-
 
 
 type Anchor = 'bottom';
@@ -86,9 +86,13 @@ export default function NavigationMenu() {
 
   return (
     <div className="navigationBottom">
+      <Link to="/Home">
+        <LocalDiningIcon fontSize="large" color="primary"/>
+      </Link>
+      <div>
       {(['bottom'] as const).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button color="secondary" onClick={toggleDrawer(anchor, true)} className="navigation"><MenuIcon /></Button>
+          <Button  onClick={toggleDrawer(anchor, true)}><MenuIcon fontSize="large" color="primary"/></Button>
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}
@@ -99,6 +103,7 @@ export default function NavigationMenu() {
           </SwipeableDrawer>
         </React.Fragment>
       ))}
+        </div>
     </div>
   );
 }

@@ -1,7 +1,9 @@
 .navigationBottom{
-    margin-left: 85vw;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgba(141, 141, 211, 0.286);
+    padding: 10px;
 }
 
 .noUnderline:link {
@@ -17,4 +19,5 @@
     font-weight: 800;
     color: rgb(67, 66, 66);
 }
+
 
