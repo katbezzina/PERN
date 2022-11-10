@@ -1,16 +1,20 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 const Home = () => {
-  var requestOptions = {
-  method: 'GET',
-  redirect: 'follow'
-};
+const getUsers = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/rawquery");
+      const jsonDATA = await response.json();
+      console.log(jsonDATA);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
-fetch("http://localhost:5000/users/all", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-  
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   return (
     <div>Home</div>
   )
