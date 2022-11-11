@@ -6,6 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
 import "../Style/Home.css";
 
 const Home = () => {
@@ -50,10 +51,11 @@ const Home = () => {
                 <Typography variant="body2" color="text.secondary">
                   {description}
                 </Typography>
+                <br></br>
+                <Divider />
+                <br></br>
                 <Typography variant="body2" color="text.secondary">
-                  {postcode}
-                  <br></br>
-                  {createdAt}
+                  {createdAt.substring(0, 10)}, {postcode}
                 </Typography>
               </CardContent>
               <CardActions>
