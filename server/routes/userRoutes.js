@@ -8,7 +8,6 @@ const router = express.Router();
 router.get("/all", async (req, res) => {
   try {
     const response = await sequelize.query("SELECT * FROM users");
-
     res.json(response);
   } catch (error) {
     console.log(error.message);

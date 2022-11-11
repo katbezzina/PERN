@@ -3,6 +3,7 @@
 import cors from "cors";
 import express from "express";
 import userRoutes from "./routes/userRoutes.js";
+import postRoutes from "./routes/postRoutes.js";
 import sequelize from "./dbConfig.js";
 
 //create express app
@@ -33,5 +34,7 @@ sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
 //creating a /users route
 
 app.use("/users", userRoutes);
+
+app.use("/posts", postRoutes);
 
 export default app;
