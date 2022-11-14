@@ -4,6 +4,7 @@ import cors from "cors";
 import express from "express";
 import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
+import postmodelRoutes from "./routes/postmodelRoutes.js";
 // import sequelize from "./dbConfig.js";
 
 //create express app
@@ -36,5 +37,7 @@ app.listen(port, () => {
 app.use("/users", userRoutes);
 
 app.use("/posts", postRoutes);
+
+app.use("/posts", postmodelRoutes);
 
 export default app;
