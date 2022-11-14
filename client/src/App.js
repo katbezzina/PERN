@@ -6,7 +6,7 @@ import LandingPage from "./Views/LandingPage";
 import Home from "./Views/Home";
 import Login from "./Views/Login";
 import Register from "./Views/Register";
-import Item from "./Views/Item";
+import Item from "./Views/Item.tsx";
 
 import { PostsContextProvider } from "./Context/PostsContext";
 
