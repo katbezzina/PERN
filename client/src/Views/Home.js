@@ -51,7 +51,7 @@ const Home = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Link to={`${id}`}>
+                <Link to={`${postid}`}>
                   <Button size="small">Go to Details</Button>
                 </Link>
                 <Button size="small">Like</Button>
