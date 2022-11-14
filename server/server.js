@@ -4,7 +4,7 @@ import cors from "cors";
 import express from "express";
 import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
-import sequelize from "./dbConfig.js";
+// import sequelize from "./dbConfig.js";
 
 //create express app
 const app = express();
@@ -23,13 +23,13 @@ const eraseDatabaseOnSync = true;
 
 //listening to local host 5000
 
-sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
-  const port = process.env.PORT || 5000;
+// sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
+const port = process.env.PORT || 5000;
 
-  app.listen(port, () => {
-    console.log("Server is running on " + port + "port");
-  });
+app.listen(port, () => {
+  console.log("Server is running on " + port + "port");
 });
+// });
 
 //creating a /users route
 
