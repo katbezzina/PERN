@@ -1,4 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 // import * as React from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -17,8 +18,15 @@ const Home = () => {
     <div className="cardFlex">
       {posts &&
         posts.map((post) => {
-          const { postid, title, postimage, postcode, description, createdat } =
-            post;
+          const {
+            postid,
+            title,
+            postimage,
+            postcode,
+            description,
+            createdat,
+            id,
+          } = post;
 
           return (
             <Card sx={{ maxWidth: 345 }} key={postid}>
@@ -43,7 +51,9 @@ const Home = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Go to Details</Button>
+                <Link to={`${id}`}>
+                  <Button size="small">Go to Details</Button>
+                </Link>
                 <Button size="small">Like</Button>
               </CardActions>
             </Card>

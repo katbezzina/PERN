@@ -18,7 +18,7 @@ export const PostsContextProvider = (props) => {
     getPosts();
   }, []);
 
-  console.log("contextposts", posts);
+  // console.log("contextposts", posts);
 
   return (
     <PostsContext.Provider value={{ posts }}>

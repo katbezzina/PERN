@@ -3,7 +3,7 @@ import pool from "../dbConfig.js";
 
 const router = express.Router();
 
-router.get("/:postid", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     let postid = req.params.id;
     const response = await pool.query(
