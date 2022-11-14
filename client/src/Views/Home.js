@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 // import * as React from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -8,35 +8,19 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import "../Style/Home.css";
+import { PostsContext } from "../Context/PostsContext";
 
 const Home = () => {
-  const [posts, setPosts] = useState(null);
-  const getPosts = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/posts/allposts");
-      const jsonDATA = await response.json();
-      setPosts(jsonDATA);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  useEffect(() => {
-    getPosts();
-  }, []);
+  const { posts } = useContext(PostsContext);
 
   return (
     <div className="cardFlex">
       {posts &&
         posts.map((post) => {
-          const { postid, title, postimage, postcode, description, createdAt } =
+          const { postid, title, postimage, postcode, description, createdat } =
             post;
 
           return (
-            //     <div key={postid}>
-            //       <img srcSet={postimage} alt=""></img>
-            //     </div>
-            //   );
             <Card sx={{ maxWidth: 345 }} key={postid}>
               <CardMedia
                 component={"img"}
@@ -55,12 +39,12 @@ const Home = () => {
                 <Divider />
                 <br></br>
                 <Typography variant="body2" color="text.secondary">
-                  {createdAt.substring(0, 10)}, {postcode}
+                  {createdat.substring(0, 10)}, {postcode}
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Like</Button>
                 <Button size="small">Go to Details</Button>
+                <Button size="small">Like</Button>
               </CardActions>
             </Card>
           );

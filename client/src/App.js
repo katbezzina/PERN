@@ -7,18 +7,22 @@ import Home from "./Views/Home";
 import Login from "./Views/Login";
 import Register from "./Views/Register";
 
+import { PostsContextProvider } from "./Context/PostsContext";
+
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-      </Routes>
-      <NavigationMenu />
-      <Routes>
-        <Route path="/Home" element={<Home />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Register" element={<Register />} />
-      </Routes>
+      <PostsContextProvider>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+        </Routes>
+        <NavigationMenu />
+        <Routes>
+          <Route path="/Home" element={<Home />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
+        </Routes>
+      </PostsContextProvider>
     </Router>
   );
 }
