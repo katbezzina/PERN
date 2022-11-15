@@ -48,13 +48,15 @@ const Register = () => {
                     <Typography variant="h5" color="text.secondary">Register</Typography>
                     <br/>
                 </Grid>
-                <TextField label='Username' placeholder='Enter username' variant="outlined" style={btnstyle} fullWidth required />
-                <FormControl sx={{ m: 1 }} variant="outlined" fullWidth required >
-                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+               <FormControl  sx={{ m: 1 }} variant="outlined" fullWidth required>
+                <TextField label='Email address' variant="outlined" style={btnstyle} type="email" fullWidth required />
+                <FormControl >
+                    <InputLabel htmlFor="outlined-adornment-password" required>Password</InputLabel>
                     <OutlinedInput
                         id="outlined-adornment-password"
                         type={values.showPassword ? 'text' : 'password'}
                         value={values.password}
+                        required
                         onChange={handleChange('password')}
                         endAdornment={
                     <InputAdornment position="end">
@@ -70,7 +72,8 @@ const Register = () => {
                         }
                     label="Password"
                     />
-                </FormControl>
+            </FormControl>
+            </FormControl>
                 {/* <TextField label='Password' placeholder='Enter password' type='password' variant="outlined" style={btnstyle} fullWidth required/>
                 <FormControlLabel
                     control={

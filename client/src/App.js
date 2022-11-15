@@ -7,6 +7,7 @@ import Home from "./Views/Home";
 import Login from "./Views/Login.tsx";
 import Register from "./Views/Register.tsx";
 import Item from "./Views/Item.tsx";
+import AddPost from "./Views/AddPost.tsx";
 
 import { PostsContextProvider } from "./Context/PostsContext";
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Home/:id" element={<Item />} />
+          <Route path="/AddPost" element={<AddPost />} />
         </Routes>
       </PostsContextProvider>
     </Router>

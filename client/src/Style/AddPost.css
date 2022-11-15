@@ -1,0 +1,20 @@
+.submitButton{
+    width: 200px;
+    background-color:rgba(52, 4, 87, 0.874);
+    border-color: rgba(255, 255, 255, 0);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: medium;
+    color: white;
+}
+
+.paperStyle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10vh;
+    max-width: 350px;
+    padding: 30px;
+}

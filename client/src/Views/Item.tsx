@@ -116,7 +116,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
         <br></br>
         <Divider />
         <br></br>
-        <Typography variant="body2" color="text.secondary" className="alignRight">
+        <Typography variant="body2" color="text.secondary" className="alignRight" fontSize="medium">
         &euro; {price}
         </Typography>
       </CardContent>
