@@ -18,15 +18,8 @@ const Home = () => {
     <div className="cardFlex">
       {posts &&
         posts.map((post) => {
-          const {
-            postid,
-            title,
-            postimage,
-            postcode,
-            description,
-            createdat,
-            id,
-          } = post;
+          const { postid, title, postimage, postcode, description, createdat } =
+            post;
 
           return (
             <Card sx={{ maxWidth: 345 }} key={postid}>
@@ -51,10 +44,9 @@ const Home = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Link to={`${postid}`}>
+                <Link to={`${postid}`} className="noUnderline">
                   <Button size="small">Go to Details</Button>
                 </Link>
-                <Button size="small">Like</Button>
               </CardActions>
             </Card>
           );

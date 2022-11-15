@@ -4,8 +4,8 @@ import NavigationMenu from "./Components/NavigationMenu.tsx";
 
 import LandingPage from "./Views/LandingPage";
 import Home from "./Views/Home";
-import Login from "./Views/Login";
-import Register from "./Views/Register";
+import Login from "./Views/Login.tsx";
+import Register from "./Views/Register.tsx";
 import Item from "./Views/Item.tsx";
 
 import { PostsContextProvider } from "./Context/PostsContext";
@@ -14,11 +14,9 @@ function App() {
   return (
     <Router>
       <PostsContextProvider>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-        </Routes>
         <NavigationMenu />
         <Routes>
+          <Route path="/" element={<LandingPage />} />
           <Route path="/Home" element={<Home />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />

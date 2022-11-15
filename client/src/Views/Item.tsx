@@ -11,13 +11,12 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import { deepPurple } from '@mui/material/colors';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Divider from "@mui/material/Divider";
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
-import Chip from '@mui/material/Chip';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import "../Style/ItemCard.css";
 import BackButton from "../Components/BackButton"
@@ -79,11 +78,11 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
                     return (
  
       
-    <Card sx={{ maxWidth: 345 }} key={postid}>
-    <BackButton color="primary" className="whiteBackground"/>
+    <Card sx={{ maxWidth: 800 }} key={postid}>
+    <BackButton />
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[990] }} aria-label="">
+          <Avatar sx={{ bgcolor: deepPurple[700] }} aria-label="">
             U
           </Avatar>
         }
@@ -123,7 +122,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          <FavoriteBorderIcon />
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
@@ -139,7 +138,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Comments</Typography>
+          <Typography paragraph color="text.secondary">Comments</Typography>
           <Typography paragraph>
 
           </Typography>
