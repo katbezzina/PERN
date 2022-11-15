@@ -11,6 +11,8 @@ import AddPost from "./Views/AddPost.tsx";
 
 import { PostsContextProvider } from "./Context/PostsContext";
 
+import "./App.css";
+
 function App() {
   return (
     <Router>
@@ -22,7 +24,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Home/:id" element={<Item />} />
-          <Route path="/AddPost" element={<AddPost />} />
+          <Route path="/MyPosting" element={<AddPost />} />
         </Routes>
       </PostsContextProvider>
     </Router>

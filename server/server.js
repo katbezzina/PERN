@@ -5,6 +5,7 @@ import express from "express";
 import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 import postmodelRoutes from "./routes/postmodelRoutes.js";
+import addpostRoutes from "./routes/addpostRoutes.js";
 // import sequelize from "./dbConfig.js";
 
 //create express app
@@ -39,5 +40,7 @@ app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
 app.use("/posts", postmodelRoutes);
+
+app.use("/posts", addpostRoutes);
 
 export default app;

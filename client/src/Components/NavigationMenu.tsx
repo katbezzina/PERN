@@ -57,13 +57,13 @@ export default function NavigationMenu() {
             </ListItemButton>
           </ListItem>
         </Link>
-        <NavLink to="/AddPost" className="noUnderline">
+        <NavLink to="/MyPosting" className="noUnderline">
           <ListItem  disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary={"Add Post"} />
+              <ListItemText primary={"My Posting"} />
             </ListItemButton>
           </ListItem>
         </NavLink>
