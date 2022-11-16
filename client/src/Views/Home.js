@@ -21,7 +21,10 @@ const Home = () => {
   }
 
   let searchedResult = searchPosts.filter((post) => {
-    return post.title.toLowerCase().includes(inputValue.toLowerCase());
+    return (
+      post.title.toLowerCase().includes(inputValue.toLowerCase()) |
+      post.description.toLowerCase().includes(inputValue.toLowerCase())
+    );
   });
 
   return (
