@@ -43,11 +43,12 @@ const Register = () => {
     return(
         <Grid className="d-flex">
             <Paper className="paperStyle">
-                <Grid>
+              <Grid>
                      {/* <Avatar color='primary'></Avatar> */}
                     <Typography variant="h5" color="text.secondary">Register</Typography>
                     <br/>
-                </Grid>
+              </Grid>
+              <form>
                <FormControl  sx={{ m: 1 }} variant="outlined" fullWidth required>
                 <TextField label='Email address' variant="outlined" style={btnstyle} type="email" fullWidth required />
                 <FormControl >
@@ -86,7 +87,8 @@ const Register = () => {
                     label="Show password"
                     color="secondary"
                  /> */}
-                <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Register</Button>
+              <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Register</Button>
+            </form>
                 <br></br>
                 <br></br>
                 <Typography > Do you have an existing account?{" "}

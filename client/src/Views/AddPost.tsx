@@ -2,7 +2,8 @@ import * as React from 'react';
 import { useState } from "react";
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
 
 import "../Style/AddPost.css"
 
@@ -38,17 +39,24 @@ export default function AddPost() {
       <Paper elevation={3} className="paperStyle">
         <Typography variant="h5" color="text.secondary">My Posting</Typography>
         <br/>
-      <form onSubmit={onSubmitForm} className="flexible">
-        <label className="inputTitle">Title*</label>
-        <input
+        <form onSubmit={onSubmitForm} className="flexible">
+        {/* <label className="inputTitle">Title*</label> */}
+        {/* <input
           placeholder='Title of Product'
           required
           type="text"
           value={title}
           onChange={e => setTitle(e.target.value)}
           className="inputShort"
+        /> */}
+        <TextField
+          variant="outlined"
+          onChange={e => setTitle(e.target.value)}
+          label="Title"
+          required
+          value={title}
         />
-        <label className="inputTitle">Username*</label>
+        {/* <label className="inputTitle">Username*</label>
         <input
           placeholder='Your username'
           required
@@ -56,16 +64,42 @@ export default function AddPost() {
           value={username}
           onChange={e => setUsername(e.target.value)}
           className="inputShort"
+        /> */}
+        <TextField
+          variant="outlined"
+          onChange={e => setUsername(e.target.value)}
+          label="Username"
+          required
+          value={username}
         />
-        <label className="inputTitle">Description*</label>
+        {/* <label className="inputTitle">Description*</label>
         <input
           required
           value={description}
           type="text"
           onChange={e => setDescription(e.target.value)}
           className="inputLong"
+        /> */}
+        <TextField
+          onChange={e => setDescription(e.target.value)}
+          label="Description"
+          multiline
+          maxRows={3}
+          required
+          value={description}
         />
-        <label className="inputTitle">Price in &euro;*</label>
+        <TextField
+          label="Price"
+          type="number"
+          required
+          helperText="Ex: 1.23"
+          value={price}
+          onChange={e => setPrice(e.target.value)}
+          InputProps={{
+            startAdornment: <InputAdornment position="start">&euro;</InputAdornment>,
+          }}
+        />
+        {/* <label className="inputTitle">Price in &euro;*</label>
         <input
           placeholder='Ex: 5.60'
           required
@@ -73,8 +107,17 @@ export default function AddPost() {
           value={price}
           onChange={e => setPrice(e.target.value)}
           className="inputShort"
-        /> 
-        <label className="inputTitle">Postcode*</label>
+        />  */}
+        <TextField
+          variant="outlined"
+          onChange={e => setPostcode(e.target.value)}
+          label="Postcode"
+          helperText="PLZ should be 5 digits"
+          type="number"
+          required
+          value={postcode}
+        />
+        {/* <label className="inputTitle">Postcode*</label>
         <input
           placeholder='5 digit postcode'
           required
@@ -82,8 +125,16 @@ export default function AddPost() {
           value={postcode}
           onChange={e => setPostcode(e.target.value)}  
           className="inputShort"
+        /> */}
+        <TextField
+          onChange={e => setPostImage(e.target.value)}
+          label="Image url"
+          multiline
+          maxRows={2}
+          required
+          value={postimage}
         />
-        <label className="inputTitle">Image url*</label>
+        {/* <label className="inputTitle">Image url*</label>
         <input
           placeholder='http://__________'
           required
@@ -91,7 +142,7 @@ export default function AddPost() {
           value={postimage}
           onChange={e => setPostImage(e.target.value)}    
           className="inputShort"
-        />
+        /> */}
       <button className="submitButton" onSubmit={onSubmitForm}>Submit</button>
       </form>
       </Paper>
