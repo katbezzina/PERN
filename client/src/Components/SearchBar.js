@@ -1,4 +1,5 @@
 import React from "react";
+import "../Style/Home.css";
 
 function Search({ handleChange }) {
   return (
@@ -7,7 +8,7 @@ function Search({ handleChange }) {
         type="search"
         placeholder="Search for..."
         onChange={handleChange}
-        className="searchBar"
+        className="SearchBar"
       />
     </form>
   );

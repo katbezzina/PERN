@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 // import * as React from "react";
 import Card from "@mui/material/Card";
@@ -10,14 +10,25 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import "../Style/Home.css";
 import { PostsContext } from "../Context/PostsContext";
+import SearchBar from "../Components/SearchBar";
 
 const Home = () => {
-  const { posts } = useContext(PostsContext);
+  const { searchPosts } = useContext(PostsContext);
+  const [inputValue, setInputValue] = useState("");
+
+  function handleChange(event) {
+    setInputValue(event.target.value);
+  }
+
+  let searchedResult = searchPosts.filter((post) => {
+    return post.title.toLowerCase().includes(inputValue.toLowerCase());
+  });
 
   return (
     <div className="cardFlex">
-      {posts &&
-        posts.map((post) => {
+      <SearchBar handleChange={handleChange} />
+      {searchedResult &&
+        searchedResult.map((post) => {
           const { postid, title, postimage, postcode, description, createdat } =
             post;
 

@@ -35,7 +35,8 @@ export default function AddPost() {
 
 
   return (
-
+    
+  <div className="center">
       <Paper elevation={3} className="paperStyle">
         <Typography variant="h5" color="text.secondary">My Posting</Typography>
         <br/>
@@ -146,6 +147,7 @@ export default function AddPost() {
       <button className="submitButton" onSubmit={onSubmitForm}>Submit</button>
       </form>
       </Paper>
+      </div>
 
   );
 }

@@ -13,3 +13,13 @@
     color: rgb(67, 66, 66);
     border-color: rgba(255, 255, 255, 0);
 }
+
+.SearchBar{
+    padding: 15px;
+    width: 250px;
+    background-color: rgba(255, 255, 255, 0.791);
+    border-color: rgba(255, 255, 255, 0);
+    border-radius: 100px;
+    font-size: medium;
+    text-align: center;
+}

@@ -1,3 +1,18 @@
+.paperStyle {
+    max-width: 700px;
+}
+
+.flexible {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
 .submitButton{
     width: 305px;
     background-color:rgba(52, 4, 87, 0.874);
@@ -9,16 +24,8 @@
     margin-top: 25px;
 }
 
-.paperStyle {
-    max-width: 700px;
-}
 
-.flexible{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
+/* 
 .inputShort{
     width: 280px;
     padding: 10px;
@@ -34,10 +41,10 @@
     border-radius: 10px;
     border-color: rgba(69, 69, 69, 0.409);
     margin-bottom: 5px;
-}
+} */
 
-.inputTitle {
+/* .inputTitle {
     text-align: left;
     font-size: small;
-}
+} */
 

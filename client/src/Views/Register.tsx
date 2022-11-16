@@ -16,10 +16,7 @@ import "../Style/LoginRegistration.css"
 const Register = () => {
     
   const [values, setValues] = useState({
-    amount: '',
     password: '',
-    weight: '',
-    weightRange: '',
     showPassword: false,
   });
 
