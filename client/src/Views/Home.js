@@ -13,17 +13,18 @@ import { PostsContext } from "../Context/PostsContext";
 import SearchBar from "../Components/SearchBar";
 
 const Home = () => {
-  const { searchPosts } = useContext(PostsContext);
+  const { posts } = useContext(PostsContext);
   const [inputValue, setInputValue] = useState("");
 
   function handleChange(event) {
     setInputValue(event.target.value);
   }
 
-  let searchedResult = searchPosts.filter((post) => {
+  let searchedResult = posts.filter((post) => {
     return (
       post.title.toLowerCase().includes(inputValue.toLowerCase()) |
-      post.description.toLowerCase().includes(inputValue.toLowerCase())
+      post.description.toLowerCase().includes(inputValue.toLowerCase()) |
+      post.createdat.toLowerCase().includes(inputValue.toLowerCase())
     );
   });
 
