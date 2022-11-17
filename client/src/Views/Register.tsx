@@ -78,7 +78,8 @@ const Register = () => {
                 <Typography variant="h5" color="text.secondary">Register</Typography>
                 <br/>
               </Grid>
-              <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
+              <FormControl variant="outlined" fullWidth required>
                 <TextField label='Name' variant="outlined" type="text" onChange={handleChange('name')} fullWidth required />
                 <TextField label='Email address' variant="outlined" style={btnstyle} type="email" onChange={handleChange('email')}  fullWidth required />
                 <FormControl required fullWidth>
@@ -103,7 +104,8 @@ const Register = () => {
                         }
                     />
                   </FormControl>
-                <Button type='submit' color='primary' variant="contained" style={btnstyle} onSubmit={handleSubmit} fullWidth>Register</Button>
+                </FormControl>
+                <Button type='submit' color='primary' variant="contained" style={btnstyle} onSubmit={handleSubmit} fullWidth>Register</Button> 
               </form>
               {values.error && <Alert severity="warning">{values.error}</Alert>}
               <br></br>
