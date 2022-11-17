@@ -19,12 +19,9 @@ app.use(
     extended: true,
   })
 );
+//to be changed in production
 app.use(cors());
-
-const eraseDatabaseOnSync = true;
-
-//listening to local host 5000
-
+// const eraseDatabaseOnSync = true;
 // sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
 const port = process.env.PORT || 5000;
 
@@ -33,14 +30,14 @@ app.listen(port, () => {
 });
 // });
 
-//creating a /users route
+////CREATING ROUTES in folder
 
+//users
 app.use("/users", userRoutes);
 
+//posts
 app.use("/posts", postRoutes);
-
 app.use("/posts", postmodelRoutes);
-
 app.use("/posts", addpostRoutes);
 
 export default app;
