@@ -46,7 +46,8 @@ const Register = () => {
                     <br/>
               </Grid>
               <form>
-               <FormControl  sx={{ m: 1 }} variant="outlined" fullWidth required>
+              <FormControl variant="outlined" fullWidth required>
+                <TextField label='Name' variant="outlined" type="text" fullWidth required />
                 <TextField label='Email address' variant="outlined" style={btnstyle} type="email" fullWidth required />
                 <FormControl >
                     <InputLabel htmlFor="outlined-adornment-password" required>Password</InputLabel>
@@ -72,18 +73,6 @@ const Register = () => {
                     />
             </FormControl>
             </FormControl>
-                {/* <TextField label='Password' placeholder='Enter password' type='password' variant="outlined" style={btnstyle} fullWidth required/>
-                <FormControlLabel
-                    control={
-                    <Checkbox
-                        name="checkedB"
-                        color="primary"
-                        size="small"
-                    />
-                    }
-                    label="Show password"
-                    color="secondary"
-                 /> */}
               <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Register</Button>
             </form>
                 <br></br>

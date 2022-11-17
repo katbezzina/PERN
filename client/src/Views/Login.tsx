@@ -46,7 +46,7 @@ const Login = () => {
                     <br/>
               </Grid>
                 <form>
-                <FormControl  sx={{ m: 1 }} variant="outlined" fullWidth required>
+                <FormControl variant="outlined" fullWidth required>
                 <TextField label='Email address' variant="outlined" style={btnstyle} type="email" fullWidth required />
                 <FormControl >
                     <InputLabel htmlFor="outlined-adornment-password" required>Password</InputLabel>
@@ -72,18 +72,6 @@ const Login = () => {
                     />
                 </FormControl>
                 </FormControl>
-                {/* <TextField label='Password' placeholder='Enter password' type='password' variant="outlined" style={btnstyle} fullWidth required/>
-                <FormControlLabel
-                    control={
-                    <Checkbox
-                        name="checkedB"
-                        color="primary"
-                        size="small"
-                    />
-                    }
-                    label="Show password"
-                    color="secondary"
-                 /> */}
               <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Login</Button>
             </form>
                 <br></br>
