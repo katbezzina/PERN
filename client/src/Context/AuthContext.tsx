@@ -39,8 +39,9 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       body: JSON.stringify({ email, password })
     }
     const res = await fetch(`${backendUrl}/users/login`, options);
-    const { success, token, error, name } = await res.json()
-    localStorage.setItem("jwt", token)
+    const { success, jwt, error, name } = await res.json()
+    //storing on the client browser
+    localStorage.setItem("jwt", jwt)
     setUser({ ...user, name })
     return { success, error }
   }
@@ -56,8 +57,10 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     const res = await fetch(`${backendUrl}/users/register`, options);
     const { success, error, jwt, name } = await res.json()
     localStorage.setItem("jwt", jwt)
-    setUser({ ...user, name })
-    return { success, error }
+      setUser({ ...user, name })
+           console.log(error)
+      return { success, error }
+ 
   }
 
 

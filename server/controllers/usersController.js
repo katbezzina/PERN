@@ -46,7 +46,7 @@ export const register = async (req, res) => {
     const arr = data.rows;
     if (arr.length != 0) {
       return res.status(400).json({
-        error: "Email already registeres; no need to register again.",
+        error: "Email already registered; no need to register again.",
         success: false,
       });
     } else {
@@ -126,7 +126,7 @@ export const login = async (req, res) => {
           res.status(200).json({
             success: true,
             name: user.name,
-            token: token,
+            jwt: token,
           });
         } else {
           if (result != true)

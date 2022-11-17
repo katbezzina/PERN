@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext, FormEvent, ChangeEvent} from 'react'
 import { Grid,Paper, TextField, Button, Typography } from '@mui/material'
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 // import FormControlLabel from '@mui/material/FormControlLabel';
@@ -9,22 +9,54 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
-import { Link } from "react-router-dom";
+import Alert from '@mui/material/Alert';
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext.tsx"
 
 import "../Style/LoginRegistration.css"
 
+interface State {
+    password: string
+    email: string
+    name: string
+    error: string
+    showPassword: boolean
+}
+
 const Register = () => {
-    
-  const [values, setValues] = useState({
-    password: '',
-    showPassword: false,
-  });
+  
+    const [values, setValues] = useState<State>({
+        password: '',
+        email: '',
+        name: '',
+        error: '',
+        showPassword: false,
+    })
 
-  const handleChange =
-    (prop) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
+    const navigate = useNavigate();
+    const { register } = useContext(AuthContext)
 
+    const handleChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+        setValues({ ...values, [prop]: event.target.value })
+    }
+
+    const handleSubmit = async (event: FormEvent) => {
+        event.preventDefault()
+
+        try {
+            const { success, error } = await register(values.email, values.password, values.name)
+            if (success) {
+                navigate("/MyProfile");
+            }
+            else {
+                error && setValues({ ...values, error: error })
+            }
+        } catch (e) {
+            setValues({ ...values, error: "e.message" })
+        }
+    }
+
+  //Toggle Password
   const handleClickShowPassword = () => {
     setValues({
       ...values,
@@ -35,53 +67,52 @@ const Register = () => {
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
-    // const paperStyle={padding :20, width:280}
-    const btnstyle={margin:'8px 0'}
+
+  const btnstyle = { margin: '8px 0' }
+  
     return(
         <Grid className="d-flex">
             <Paper className="paperStyle">
               <Grid>
-                     {/* <Avatar color='primary'></Avatar> */}
-                    <Typography variant="h5" color="text.secondary">Register</Typography>
-                    <br/>
+                {/* <Avatar color='primary'></Avatar> */}
+                <Typography variant="h5" color="text.secondary">Register</Typography>
+                <br/>
               </Grid>
-              <form>
-              <FormControl variant="outlined" fullWidth required>
-                <TextField label='Name' variant="outlined" type="text" fullWidth required />
-                <TextField label='Email address' variant="outlined" style={btnstyle} type="email" fullWidth required />
-                <FormControl >
-                    <InputLabel htmlFor="outlined-adornment-password" required>Password</InputLabel>
+              <form onSubmit={handleSubmit}>
+                <TextField label='Name' variant="outlined" type="text" onChange={handleChange('name')} fullWidth required />
+                <TextField label='Email address' variant="outlined" style={btnstyle} type="email" onChange={handleChange('email')}  fullWidth required />
+                <FormControl required fullWidth>
+                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                     <OutlinedInput
-                        id="outlined-adornment-password"
-                        type={values.showPassword ? 'text' : 'password'}
-                        value={values.password}
-                        required
-                        onChange={handleChange('password')}
-                        endAdornment={
+                      id="outlined-adornment-password"
+                      type={values.showPassword ? 'text' : 'password'}
+                      value={values.password}
+                      onChange={handleChange('password')}
+                      label='Password'
+                      endAdornment={
                     <InputAdornment position="end">
                     <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"   
                     >
-                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                     </InputAdornment>
                         }
-                    label="Password"
                     />
-            </FormControl>
-            </FormControl>
-              <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Register</Button>
-            </form>
-                <br></br>
-                <br></br>
-                <Typography > Do you have an existing account?{" "}
+                  </FormControl>
+                <Button type='submit' color='primary' variant="contained" style={btnstyle} onSubmit={handleSubmit} fullWidth>Register</Button>
+              </form>
+              {values.error && <Alert severity="warning">{values.error}</Alert>}
+              <br></br>
+              <br></br>
+              <Typography > Do you have an existing account?{" "}
                  <Link to="/Login" >
                      Login
                 </Link>
-                </Typography>
+              </Typography>
             </Paper>
         </Grid>
     )
