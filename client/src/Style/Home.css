@@ -5,8 +5,16 @@
     gap: 20px;
     justify-content: center;
     align-items: center;
-    margin-top: 85px;
     margin-bottom: 55px;
+}
+
+.marginTop{
+    margin-top: 85px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 .noUnderline{

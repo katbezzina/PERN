@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext, ChangeEvent, FormEvent} from 'react'
 import { Grid,Paper, TextField, Button, Typography } from '@mui/material'
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 // import FormControlLabel from '@mui/material/FormControlLabel';
@@ -9,21 +9,50 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
-import { Link } from "react-router-dom";
+import Alert from '@mui/material/Alert';
+import { AuthContext } from "../Context/AuthContext.tsx";
+import { Link, useNavigate } from "react-router-dom";
 
 import "../Style/LoginRegistration.css"
+interface State {
+    password: string
+    email: string
+    error: string
+}
 
 const Login = () => {
     
   const [values, setValues] = useState({
-    password: '',
-    showPassword: false,
-  });
+        password: '',
+        email: '',
+        error: '',
+        showPassword: false,
+    })
 
-  const handleChange =
-    (prop) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext)
+
+  const handleChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+      setValues({ ...values, [prop]: event.target.value })
+    }
+  
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault()
+
+    const { success, error } = await login(values.email, values.password)
+    try {
+      if (success) {
+        navigate("/MyProfile");
+      }
+      else {
+        error && setValues({ ...values, error: error })
+      }
+    } catch (e) {
+      setValues({ ...values, error: "e.message" })
+    }
+  }
+
+  // Toggle Password
 
   const handleClickShowPassword = () => {
     setValues({
@@ -45,9 +74,9 @@ const Login = () => {
                     <Typography variant="h5" color="text.secondary">Login</Typography>
                     <br/>
               </Grid>
-                <form>
+              <form onSubmit={handleSubmit}>
                 <FormControl variant="outlined" fullWidth required>
-                <TextField label='Email address' variant="outlined" style={btnstyle} type="email" fullWidth required />
+                <TextField label='Email address' variant="outlined" style={btnstyle} type="email" onChange={handleChange('email')} fullWidth required />
                 <FormControl >
                     <InputLabel htmlFor="outlined-adornment-password" required>Password</InputLabel>
                     <OutlinedInput
@@ -72,8 +101,9 @@ const Login = () => {
                     />
                 </FormControl>
                 </FormControl>
-              <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Login</Button>
+              <Button type='submit' color='primary' variant="contained" style={btnstyle} onSubmit={handleSubmit} fullWidth>Login</Button>
             </form>
+            {values.error && <Alert severity="warning">{values.error}</Alert>}
                 <br></br>
                 <br></br>
                 <Typography > Don't have an account?{" "}

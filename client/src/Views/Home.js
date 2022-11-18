@@ -29,43 +29,51 @@ const Home = () => {
   });
 
   return (
-    <div className="cardFlex">
+    <div className="marginTop">
       <SearchBar handleChange={handleChange} />
-      {searchedResult &&
-        searchedResult.map((post) => {
-          const { postid, title, postimage, postcode, description, createdat } =
-            post;
+      <div className="cardFlex">
+        {searchedResult &&
+          searchedResult.map((post) => {
+            const {
+              postid,
+              title,
+              postimage,
+              postcode,
+              description,
+              createdat,
+            } = post;
 
-          return (
-            <Card sx={{ maxWidth: 345 }} key={postid}>
-              <CardMedia
-                component={"img"}
-                alt=""
-                height="140"
-                image={postimage}
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {description}
-                </Typography>
-                <br></br>
-                <Divider />
-                <br></br>
-                <Typography variant="body2" color="text.secondary">
-                  {createdat.substring(0, 10)}, {postcode}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Link to={`${postid}`} className="noUnderline">
-                  <Button size="small">Go to Details</Button>
-                </Link>
-              </CardActions>
-            </Card>
-          );
-        })}
+            return (
+              <Card sx={{ maxWidth: 345 }} key={postid}>
+                <CardMedia
+                  component={"img"}
+                  alt=""
+                  height="140"
+                  image={postimage}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {description}
+                  </Typography>
+                  <br></br>
+                  <Divider />
+                  <br></br>
+                  <Typography variant="body2" color="text.secondary">
+                    {createdat.substring(0, 10)}, {postcode}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Link to={`${postid}`} className="noUnderline">
+                    <Button size="small">Go to Details</Button>
+                  </Link>
+                </CardActions>
+              </Card>
+            );
+          })}
+      </div>
     </div>
   );
 };
