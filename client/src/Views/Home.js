@@ -31,7 +31,7 @@ const Home = () => {
   return (
     <div className="marginTop">
       <SearchBar handleChange={handleChange} />
-      <div className="cardFlex">
+      <div className="cardsFlex">
         {searchedResult &&
           searchedResult.map((post) => {
             const {
