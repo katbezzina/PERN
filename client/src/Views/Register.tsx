@@ -11,7 +11,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Alert from '@mui/material/Alert';
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../Context/AuthContext.tsx"
+import { AuthContext } from "../Context/AuthContext"
 
 import "../Style/LoginRegistration.css"
 

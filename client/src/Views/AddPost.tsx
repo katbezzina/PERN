@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useState } from "react";
+import React, {useState, FormEvent} from 'react'
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
@@ -18,7 +17,7 @@ export default function AddPost() {
   const [postimage, setPostImage] = useState("")
 
 
-  const onSubmitForm = async e => {
+  const onSubmitForm = async (e: FormEvent) => {
     e.preventDefault();
     try {
       const body = { title, username, description, price, postcode, postimage };
@@ -28,7 +27,7 @@ export default function AddPost() {
         body: JSON.stringify(body)
       });
       console.log(response)
-    } catch (err) {
+    } catch (err: any) {
       console.log(err.message);
     }
   }

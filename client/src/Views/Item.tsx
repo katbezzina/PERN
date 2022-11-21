@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -92,7 +91,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
         //   </IconButton>
         // }
         title={username}
-        subheader={createdat.substring(0, 10)}
+        subheader={createdat}
       />
       <CardMedia
         component="img"

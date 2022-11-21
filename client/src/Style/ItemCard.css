@@ -9,5 +9,8 @@
 }
 
 .cardFlex{
-    margin-top: 85px;
+    margin-top: 125px;
+    margin-bottom: 70px;
+    display: flex;
+    justify-content: center;
 }

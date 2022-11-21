@@ -10,7 +10,7 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Alert from '@mui/material/Alert';
-import { AuthContext } from "../Context/AuthContext.tsx";
+import { AuthContext } from "../Context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
 import "../Style/LoginRegistration.css"
