@@ -3,9 +3,16 @@
 import cors from "cors";
 import express from "express";
 import userRoutes from "./routes/userRoutes.js";
+import profileRoutes from "./routes/profileRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 import postmodelRoutes from "./routes/postmodelRoutes.js";
 import addpostRoutes from "./routes/addpostRoutes.js";
+import passport from "passport";
+import { passportConfig } from "./middleware/passport.js";
+import * as dotenv from "dotenv";
+
+dotenv.config();
+
 // import sequelize from "./dbConfig.js";
 
 //create express app
@@ -21,6 +28,10 @@ app.use(
 );
 //to be changed in production
 app.use(cors());
+
+app.use(passport.initialize());
+passportConfig(passport);
+
 // const eraseDatabaseOnSync = true;
 // sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
 const port = process.env.PORT || 5000;
@@ -34,6 +45,9 @@ app.listen(port, () => {
 
 //users
 app.use("/users", userRoutes);
+
+//profile
+app.use("/profiles", profileRoutes);
 
 //posts
 app.use("/posts", postRoutes);

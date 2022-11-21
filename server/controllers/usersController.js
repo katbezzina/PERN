@@ -21,7 +21,7 @@ export const getAllUsers = async (req, res) => {
 export const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log("id", id);
+    console.log("getuserbyid", id);
     const user = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
     res.status(200).json({
       user: user.rows[0],
@@ -144,4 +144,9 @@ export const login = async (req, res) => {
       success: false,
     });
   }
+};
+
+export const getProfile = async (req, res) => {
+  console.log("req.payload >>>>", req.payload);
+  res.status(201).json(`authorized request for ${req.payload.email}`);
 };
