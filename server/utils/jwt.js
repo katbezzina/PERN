@@ -11,7 +11,7 @@ const issueToken = (userId) => {
     sub: userId,
   };
 
-  const jwt = jsonwebtoken.sign(payload, process.env.SECRET_OR_KEY, options);
+  const jwt = jsonwebtoken.sign(payload, process.env.SECRET_KEY, options);
 
   return jwt;
 };
