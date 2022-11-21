@@ -16,7 +16,26 @@ export const getAllProfiles = async (req, res) => {
   }
 };
 
-export const viewProfile = (req, res) => {
+// export const getMyProfile = async (req, res) => {
+//   try {
+//     const { userid } = req.params;
+//     const profile = await pool.query(
+//       "SELECT * FROM profiles, users WHERE userid = users.id= $1",
+//       [userid]
+//     );
+//     res.status(200).json({
+//       profile: profile,
+//       success: true,
+//     });
+//   } catch (error) {
+//     res.status(500).json({
+//       error: error,
+//       success: false,
+//     });
+//   }
+// };
+
+export const postToProfile = (req, res) => {
   console.log("req.user", req.user);
   const userid = req.user.id;
   console.log("user", userid);
