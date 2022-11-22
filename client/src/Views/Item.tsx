@@ -22,6 +22,8 @@ import BackButton from "../Components/BackButton"
 
 // import MoreVertIcon from '@mui/icons-material/MoreVert';
 
+const backendUrl = "http://localhost:5000";
+
 const Item = () => {
 
   //Fetching details
@@ -31,7 +33,7 @@ const Item = () => {
 
     useEffect(() => {
         (async function () {
-            let data = await fetch(`http://localhost:5000/posts/${id}`).then((results) => results.json());
+            let data = await fetch(`${backendUrl}/posts/${id}`).then((results) => results.json());
             setPost(data);
             // console.log("data", data);
         })();
@@ -102,9 +104,9 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
       <CardContent>
         <Typography variant="h5" color="text.secondary">
           {title}
-        <Typography variant="body2" color="text.secondary">
-          <FmdGoodIcon fontSize="small" /> {postcode}
         </Typography>
+        <Typography variant="body2" color="text.secondary" className="alignRight">
+          <FmdGoodIcon fontSize="small" /> {postcode}
         </Typography>
         <br></br>
         <Divider />

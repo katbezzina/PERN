@@ -5,8 +5,6 @@ import express from "express";
 import userRoutes from "./routes/userRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
-import postmodelRoutes from "./routes/postmodelRoutes.js";
-import addpostRoutes from "./routes/addpostRoutes.js";
 import passport from "passport";
 import { passportConfig } from "./middleware/passport.js";
 import * as dotenv from "dotenv";
@@ -51,7 +49,5 @@ app.use("/profiles", profileRoutes);
 
 //posts
 app.use("/posts", postRoutes);
-app.use("/posts", postmodelRoutes);
-app.use("/posts", addpostRoutes);
 
 export default app;

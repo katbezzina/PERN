@@ -1,5 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 
+const backendUrl = "http://localhost:5000";
+
 export const PostsContext = createContext();
 
 export const PostsContextProvider = (props) => {
@@ -7,7 +9,7 @@ export const PostsContextProvider = (props) => {
 
   const getPosts = async () => {
     try {
-      let response = await fetch("http://localhost:5000/posts/allposts");
+      let response = await fetch(`${backendUrl}/posts/allposts`);
       let jsonDATA = await response.json();
       setPosts(jsonDATA);
     } catch (error) {

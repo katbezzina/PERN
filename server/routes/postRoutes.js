@@ -1,28 +1,17 @@
 import express from "express";
-import pool from "../dbConfig.js";
-// import Posts from "../models/posts.js";
+import {
+  addPost,
+  getAllPosts,
+  getPostDetails,
+} from "../controllers/postsController.js";
 
 const router = express.Router();
 
-// router.get("/allposts", async (req, res) => {
-//   try {
-//     const posts = await Posts.findAll();
-//     res.send(posts);
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// });
+router.get("/allposts", getAllPosts);
 
-router.get("/allposts", async (req, res) => {
-  try {
-    const response = await pool.query(
-      "SELECT * FROM user_posts ORDER BY createdat DESC"
-    );
-    // console.log("response", response.rows);
-    res.json(response.rows);
-  } catch (error) {
-    console.error(error.message);
-  }
-});
+router.get("/:id", getPostDetails);
+
+//to add middleware
+router.post("/mypost", addPost);
 
 export default router;

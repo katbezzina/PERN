@@ -38,6 +38,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       },
       body: JSON.stringify({ email, password })
     }
+    const backendUrl = process.env.REACT_APP_SERVER_URL
     const res = await fetch(`${backendUrl}/users/login`, options);
     const { success, jwt, error, name } = await res.json()
     //storing on the client browser

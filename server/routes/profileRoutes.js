@@ -2,7 +2,7 @@ import express from "express";
 import {
   getAllProfiles,
   postToProfile,
-  //   getMyProfile,
+  // getMyProfile,
 } from "../controllers/profileController.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 import { jwtAuth } from "../middleware/passport.js";

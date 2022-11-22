@@ -5,7 +5,7 @@ export const getAllProfiles = async (req, res) => {
     const users =
       // email , name , avatar , username
       await pool.query(
-        `SELECT * FROM profiles , users WHERE profiles.userid = users.id`
+        `SELECT avatar, username, email, name FROM profiles , users WHERE profiles.userid = users.id`
       );
     res.status(200).json(users.rows);
   } catch (error) {
@@ -19,14 +19,11 @@ export const getAllProfiles = async (req, res) => {
 // export const getMyProfile = async (req, res) => {
 //   try {
 //     const { userid } = req.params;
-//     const profile = await pool.query(
-//       "SELECT * FROM profiles, users WHERE userid = users.id= $1",
+//     const profileDetails = await pool.query(
+//       "SELECT * FROM profiles WHERE userid = $1",
 //       [userid]
 //     );
-//     res.status(200).json({
-//       profile: profile,
-//       success: true,
-//     });
+//     res.status(200).json(profileDetails.rows[0]);
 //   } catch (error) {
 //     res.status(500).json({
 //       error: error,
