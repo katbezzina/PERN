@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
+import ListItemIcon from "@mui/material/ListItemIcon";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
+import "../Style/NavigationMenu.css";
 
 function Logout(props) {
   const { logout } = useContext(AuthContext);
@@ -11,9 +13,7 @@ function Logout(props) {
 
   return (
     <>
-      <button onClick={handleShow} className="noUnderline loginButton">
-        Logout
-      </button>
+      <ListItemIcon onClick={handleShow}>Logout</ListItemIcon>
 
       <Modal
         {...props}
@@ -26,9 +26,13 @@ function Logout(props) {
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>Are you sure you would like to log out?</Modal.Body>
         <Modal.Footer>
-          <button onClick={handleClose}>No</button>
+          <button onClick={handleClose} className="noUnderline registerButton">
+            No
+          </button>
           <Link to="/Login">
-            <button onClick={logout}>Log out</button>
+            <button onClick={logout} className="noUnderline loginButton">
+              Logout anyway!
+            </button>
           </Link>
         </Modal.Footer>
       </Modal>

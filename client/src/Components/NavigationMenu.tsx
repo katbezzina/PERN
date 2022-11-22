@@ -1,25 +1,30 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
+import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import MenuIcon from '@mui/icons-material/Menu';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import "../Style/NavigationMenu.css"
 import { NavLink, Link } from "react-router-dom";
 
+import { AuthContext } from "../Context/AuthContext"
+import Logout from "./Logout"
+
 
 type Anchor = 'bottom';
 
 export default function NavigationMenu() {
+  const { user } = useContext(AuthContext)
   const [state, setState] = React.useState({
     bottom: false,
   });
@@ -40,6 +45,9 @@ export default function NavigationMenu() {
     };
 
   const list = (anchor: Anchor) => (
+
+      <div>
+      {user ? (
     <Box
       sx={{ width: anchor === 'bottom' ? 'auto' : 250 }}
       role="presentation"
@@ -48,50 +56,65 @@ export default function NavigationMenu() {
     >
       <List>
         <Link to="/Home" className="noUnderline">
-          <ListItem  disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
               <ListItemText primary={"Home"} />
             </ListItemButton>
-          </ListItem>
         </Link>
         <NavLink to="/MyPosting" className="noUnderline">
-          <ListItem  disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <NoteAddIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Add a Post"} />
+            </ListItemButton>
+        </NavLink>
+        <ListItemButton>
+          <ListItemIcon>
+            {<LogoutIcon />}
+          </ListItemIcon>
+            <Logout />
+        </ListItemButton>
+      </List>
+      </Box>
+            ): (
+      <Box
+      sx={{ width: anchor === 'bottom' ? 'auto' : 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        <Link to="/Home" className="noUnderline">
             <ListItemButton>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary={"My Posting"} />
+              <ListItemText primary={"Home"} />
             </ListItemButton>
-          </ListItem>
-        </NavLink>
-      </List>
-      <Divider />
-      <List>
+        </Link>
         <NavLink to="/Login" className="noUnderline">
-          <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 {<LoginIcon />}
               </ListItemIcon>
               <ListItemText primary={"Login"} />
             </ListItemButton>
-          </ListItem>
         </NavLink>
         <NavLink to="/Register" className="noUnderline">
-          <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <AppRegistrationIcon/>
               </ListItemIcon>
               <ListItemText primary={"Register"} />
             </ListItemButton>
-          </ListItem>
         </NavLink>
       </List>
-    </Box>
+      </Box>
+      )}
+    </div>
   );
 
   return (

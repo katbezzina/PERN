@@ -23,4 +23,20 @@
     color: rgb(67, 66, 66);
 }
 
+.loginButton {
+    background-color:rgba(168, 168, 169, 0.507);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+}
+
+.registerButton {
+    background-color: rgba(169, 108, 255, 0.141);
+    padding: 10px;
+    color: rgba(53, 52, 52, 0.843);
+    border-radius: 5px;
+    text-align: center;
+    width: 120px;
+}
 

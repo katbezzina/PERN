@@ -107,7 +107,7 @@ const Login = () => {
                 <br></br>
                 <br></br>
                 <Typography > Don't have an account?{" "}
-                 <Link to="/Register" >
+                 <Link to="/Register">
                      Register 
                 </Link>
                 </Typography>
