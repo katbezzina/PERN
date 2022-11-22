@@ -6,14 +6,18 @@ type User = { name: string, email?: string }
 
 export type AuthContextValue = {
   user: User | null
+  isLoggedIn: boolean
   register: (email: string, password: string, name: string) => Promise<{ success: boolean, error: string }>
   login: (email: string, password: string) => Promise<{ success: boolean, error: string }>
+  logout: () => void
 }
 
 const initialAuth: AuthContextValue = {
   user: null,
+  isLoggedIn: false,
   register: () => { throw new Error('register not successful.'); },
-  login: () => { throw new Error('login not successful.'); }
+  login: () => { throw new Error('login not successful.'); },
+  logout: () => { throw new Error('logout not successful.'); }
 }
 
 // ** Create Context
@@ -23,11 +27,7 @@ export const AuthContext = createContext<AuthContextValue>(initialAuth)
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   // ** State
   const [user, setUser] = useState<User | null>(initialAuth.user)
-
-  // useEffect(() => {
-  //   // getSession()
-  // }, [])
-
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const login = async (email: string, password: string) => {
     console.log('email', email)
@@ -38,13 +38,20 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       },
       body: JSON.stringify({ email, password })
     }
-    const backendUrl = process.env.REACT_APP_SERVER_URL
+    // const backendUrl = process.env.REACT_APP_SERVER_URL
     const res = await fetch(`${backendUrl}/users/login`, options);
     const { success, jwt, error, name } = await res.json()
     //storing on the client browser
     localStorage.setItem("jwt", jwt)
     setUser({ ...user, name })
+    setIsLoggedIn(true);
     return { success, error }
+  }
+
+  const logout = () => {
+    setIsLoggedIn(false)
+    localStorage.clear()
+    setUser(null)
   }
     
   const register = async (email: string, password: string, nameForm: string) => {
@@ -61,10 +68,9 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       setUser({ ...user, name })
            console.log(error)
       return { success, error }
- 
   }
 
 
-  return <AuthContext.Provider value={{ user, login, register }}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{ user, isLoggedIn, login, register, logout }}>{children}</AuthContext.Provider>
 }
 

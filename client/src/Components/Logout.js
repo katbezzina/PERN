@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
 
 function Logout(props) {
+  const { logout } = useContext(AuthContext);
   const [show, setShow] = useState(false);
-  //   const { logout } = useAuth();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   return (
     <>
       <button onClick={handleShow} className="noUnderline loginButton">
@@ -26,7 +28,7 @@ function Logout(props) {
         <Modal.Footer>
           <button onClick={handleClose}>No</button>
           <Link to="/Login">
-            <button>Log out</button>
+            <button onClick={logout}>Log out</button>
           </Link>
         </Modal.Footer>
       </Modal>

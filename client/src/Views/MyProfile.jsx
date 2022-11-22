@@ -1,5 +1,6 @@
 import React from "react";
 // import { useParams } from "react-router-dom";
+import Logout from "../Components/Logout"
 
 const MyProfile = () => {
 
@@ -15,7 +16,8 @@ const MyProfile = () => {
     // }, []);
   return (
     <div>
-    <h1>hello</h1>
+      <h1>hello</h1>
+      <Logout />
     {/* // <div>{profiles && profiles.map((profile) => {
     //   const {username} = profile
 
