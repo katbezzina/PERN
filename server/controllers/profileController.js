@@ -5,7 +5,7 @@ export const getAllProfiles = async (req, res) => {
     const users =
       // email , name , avatar , username
       await pool.query(
-        `SELECT avatar, username, email, name FROM profiles , users WHERE profiles.userid = users.id`
+        `SELECT avatar, username, email, name, userid FROM profiles , users WHERE profiles.userid = users.id`
       );
     res.status(200).json(users.rows);
   } catch (error) {
@@ -16,21 +16,22 @@ export const getAllProfiles = async (req, res) => {
   }
 };
 
-// export const getMyProfile = async (req, res) => {
-//   try {
-//     const { userid } = req.params;
-//     const profileDetails = await pool.query(
-//       "SELECT * FROM profiles WHERE userid = $1",
-//       [userid]
-//     );
-//     res.status(200).json(profileDetails.rows[0]);
-//   } catch (error) {
-//     res.status(500).json({
-//       error: error,
-//       success: false,
-//     });
-//   }
-// };
+export const getMyProfile = async (req, res) => {
+  try {
+    // console.log("uid", req.userid);
+    const profileDetails = await pool.query(
+      // `SELECT avatar, username, email, name, userid FROM profiles, users WHERE profiles.userid = $1`,
+      `SELECT avatar, username, name, email FROM profiles FULL OUTER JOIN users ON users.id = profiles.userid where userid = $1`,
+      [req.user.id]
+    );
+    res.status(200).json(profileDetails.rows[0]);
+  } catch (error) {
+    res.status(500).json({
+      error: error,
+      success: false,
+    });
+  }
+};
 
 export const postToProfile = (req, res) => {
   console.log("req.user", req.user);
