@@ -35,7 +35,7 @@ const Item = () => {
         (async function () {
             let data = await fetch(`${backendUrl}/posts/${id}`).then((results) => results.json());
             setPost(data);
-            // console.log("data", data);
+            console.log("Post data", data);
         })();
     }, []);
 

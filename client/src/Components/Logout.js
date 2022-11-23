@@ -14,15 +14,15 @@ function Logout(props) {
   return (
     <>
       <ListItemIcon onClick={handleShow}>Logout</ListItemIcon>
-
-      <Modal
+      <Modal show={show} onHide={handleClose} animation={false}>
+        {/* <Modal
         {...props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
         show={show}
         onHide={handleClose}
-      >
+      > */}
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>Are you sure you would like to log out?</Modal.Body>
         <Modal.Footer>

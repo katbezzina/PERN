@@ -2,7 +2,7 @@ import React, { createContext, useState, ReactNode } from 'react'
 
 const backendUrl = "http://localhost:5000"
 
-type User = { name: string, email?: string }
+type User = { name: string, email?: string  }
 
 export type AuthContextValue = {
   user: User | null
@@ -28,7 +28,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   // ** State
   const [user, setUser] = useState<User | null>(initialAuth.user)
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-
+  
   const login = async (email: string, password: string) => {
     console.log('email', email)
     const options = {
