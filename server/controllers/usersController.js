@@ -165,7 +165,40 @@ export const login = async (req, res) => {
   }
 };
 
+export const updateUsername = async (req, res) => {
+  console.log("req.user", req.user);
+  const { username } = req.body;
+  pool.query(
+    `UPDATE users SET username = $1 WHERE id = $2;`,
+    [username, req.user.id],
+    (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({
+          error: "Database error",
+          success: false,
+        });
+      } else {
+        res.status(200).send({
+          success: true,
+        });
+      }
+    }
+  );
+};
+
+//Just for practice
 export const getProfile = async (req, res) => {
   console.log("req.payload >>>>", req.payload);
   res.status(201).json(`authorized request for ${req.payload.email}`);
+};
+
+//not used yet
+export const verification = async (req, res) => {
+  try {
+    res.json(true);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
 };

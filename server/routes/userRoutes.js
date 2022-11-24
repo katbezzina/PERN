@@ -6,6 +6,8 @@ import {
   login,
   getProfile,
   getMyUserProfile,
+  updateUsername,
+  verification,
 } from "../controllers/usersController.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 import validInfo from "../middleware/validInfo.js";
@@ -24,6 +26,8 @@ router.post("/login", validInfo, login);
 
 router.get("/profile", authMiddleware, getProfile);
 router.get("/me", jwtAuth, getMyUserProfile);
+router.put("/updateUsername", jwtAuth, updateUsername);
+router.post("/verify", jwtAuth, verification);
 
 // //GET route to query users table with Sequelize
 // router.get("/all", async (req, res) => {
