@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext} from 'react'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import { AuthContext } from "../Context/AuthContext"
 
 const style = {
   position: "absolute",
@@ -16,8 +17,10 @@ const style = {
   p: 4,
 };
 
-const UpdateUsername = ( profile ) => {
-    const [username, setUsername] = useState(profile.username)
+const UpdateUsername = ( ) => {
+    const {user, getUser} = useContext(AuthContext)
+    const [username, setUsername] = useState(user.username ? user.username : "")
+
 
     const updateYourUsername = async e => {
         e.preventDefault();
@@ -25,19 +28,22 @@ const UpdateUsername = ( profile ) => {
             const backendUrl = "http://localhost:5000"
             const options = {
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+                    'Content-Type': 'application/json'
                 },
                 method: 'PUT',
+                body: JSON.stringify({username}),
             }
-            await fetch(`${backendUrl}/users/updateUsername`, options)
-
-                .then(response => response.text())
-                .then(result => console.log(result))
+             const response =  await fetch(`${backendUrl}/users/updateUsername`, options)
+            const { success } = await response.json()
+            console.log("succeaa", success)
+            if (success) {
+                getUser()
+            }
         }
         catch (error) {
             console.log('error', error)
         }
-    setUsername()
     }
 
   function handleUsernameChange(e) {
@@ -61,7 +67,7 @@ const UpdateUsername = ( profile ) => {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Update your username
           </Typography>
-          <input label='Your new username' onChange={handleUsernameChange} value={profile.username} />
+          <input label='Your new username' onChange={handleUsernameChange} value={username} />
           <button onClick={e => updateYourUsername(e)}>Update</button>
           <button onClick={handleClose}>Close</button>
         </Box>

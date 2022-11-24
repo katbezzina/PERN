@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Avatar from '@mui/material/Avatar';
 import axios from 'axios'
 import Logout from "../Components/Logout"
+import UpdateUsername from "../Components/UpdateUsername"
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -9,6 +10,7 @@ import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import "../Style/MyProfile.css"
+import { AuthContext } from "../Context/AuthContext"
 
 
 // interface Profile {
@@ -20,40 +22,18 @@ import "../Style/MyProfile.css"
 
 const MyProfile = () => {
 
-  const [profile, setProfile] = useState(null);
-
-  useEffect(() => {
-    const getProfile = async () => {
-      try {
-        const backendUrl= "http://localhost:5000"
-        const options = {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-          },
-          method: 'GET',
-        }
-        const data = await axios.get(`${backendUrl}/users/me`, options);
-        if (data.data) {
-          console.log("userprofile", data.data)
-          setProfile(data.data);
-        }
-      }
-      catch (error) {
-        console.log('error', error)
-      }
-    }
-    getProfile()
-  }, []);
+  const {user} = useContext(AuthContext)
+  
 
   return (
   <div className="profileCard">
-  {profile &&
+  {user &&
     <Card sx={{ maxWidth: 800 }}>
       <CardHeader color="secondary"
         avatar={
-          <Avatar srcSet={profile.avatar} aria-label="" />
+          <Avatar srcSet={user.avatar} aria-label="" />
         }
-        title={profile.name}
+        title={user.name}
       />
           <CardContent>
               <Divider />
@@ -61,15 +41,12 @@ const MyProfile = () => {
               <br />
               <br />
               <Typography variant="h3" color="primary">
-                Welcome, {profile.username}!
+                Welcome, {user.username}!
               </Typography>
               <br />
               <br />
-              <Typography variant="body1" color="secondary">
-                The purpose of this website is to avoid food waste on a local level with little effort, while you save money, the planet and your tummy!
-                <br />
-                <br />
-                We would like to thank you for your contributions to this community {"=)"}
+              <Typography variant="h6" color="secondary">
+                Save money. Save the planet. <br /> Save your tummy.
               </Typography>
             </div>
               <br />
@@ -78,6 +55,7 @@ const MyProfile = () => {
           </CardContent>
           <CardActions disableSpacing>
             <Logout />
+            <UpdateUsername />
           </CardActions>
         </Card>
       }
