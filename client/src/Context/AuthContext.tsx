@@ -1,3 +1,4 @@
+import userEvent from '@testing-library/user-event'
 import React, { createContext, useState, ReactNode } from 'react'
 
 const backendUrl = "http://localhost:5000"
@@ -7,7 +8,7 @@ type User = { name: string, email?: string  }
 export type AuthContextValue = {
   user: User | null
   isLoggedIn: boolean
-  register: (email: string, password: string, name: string) => Promise<{ success: boolean, error: string }>
+  register: (email: string, password: string, name: string, username: string, avatar: string) => Promise<{ success: boolean, error: string }>
   login: (email: string, password: string) => Promise<{ success: boolean, error: string }>
   logout: () => void
 }
@@ -54,19 +55,20 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     setUser(null)
   }
     
-  const register = async (email: string, password: string, nameForm: string) => {
+  const register = async (email: string, password: string, nameForm: string, avatar: string, username: string) => {
     const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email, password, name: nameForm })
+      body: JSON.stringify({ email, password, name: nameForm, username, avatar })
     }
     const res = await fetch(`${backendUrl}/users/register`, options);
-    const { success, error, jwt, name } = await res.json()
+    const { success, error, jwt, name} = await res.json()
     localStorage.setItem("jwt", jwt)
-      setUser({ ...user, name })
-           console.log(error)
+    setUser({ ...user, name })
+    setIsLoggedIn(true);
+    console.log(error)
       return { success, error }
   }
 

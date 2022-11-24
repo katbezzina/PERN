@@ -19,6 +19,8 @@ interface State {
     password: string
     email: string
     name: string
+    username: string
+    avatar: string
     error: string
     showPassword: boolean
 }
@@ -29,6 +31,8 @@ const Register = () => {
         password: '',
         email: '',
         name: '',
+        username: '',
+        avatar: '',
         error: '',
         showPassword: false,
     })
@@ -44,12 +48,12 @@ const Register = () => {
         event.preventDefault()
 
         try {
-            const { success, error } = await register(values.email, values.password, values.name)
+            const { success, error } = await register(values.email, values.password, values.name, values.username, values.avatar)
             if (success) {
-                navigate("/MyProfile");
+              navigate("/MyProfile");
             }
             else {
-                error && setValues({ ...values, error: error })
+              error && setValues({ ...values, error: error })
             }
         } catch (e) {
             setValues({ ...values, error: "e.message" })
@@ -80,14 +84,17 @@ const Register = () => {
               </Grid>
             <form onSubmit={handleSubmit}>
               <FormControl variant="outlined" fullWidth required>
-                <TextField label='Name' variant="outlined" type="text" onChange={handleChange('name')} fullWidth required />
-                <TextField label='Email address' variant="outlined" style={btnstyle} type="email" onChange={handleChange('email')}  fullWidth required />
-                <FormControl required fullWidth>
-                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+              <TextField label='Name' variant="outlined" type="text" style={btnstyle} onChange={handleChange('name')} fullWidth required />
+              <TextField label='Username' variant="outlined" type="text" style={btnstyle} onChange={handleChange('username')} fullWidth required />
+              <TextField label='Url of your avatar' variant="outlined" style={btnstyle} type="text" multiline maxRows={2} required onChange={handleChange('avatar')} fullWidth />
+              <TextField label='Email address' variant="outlined" style={btnstyle} type="email" onChange={handleChange('email')}  fullWidth required />
+                <FormControl required fullWidth style={btnstyle}>
+                    <InputLabel htmlFor="outlined-adornment-password" >Password</InputLabel>
                     <OutlinedInput
                       id="outlined-adornment-password"
                       type={values.showPassword ? 'text' : 'password'}
                       value={values.password}
+                      
                       onChange={handleChange('password')}
                       label='Password'
                       endAdornment={

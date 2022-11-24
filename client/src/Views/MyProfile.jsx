@@ -32,7 +32,7 @@ const MyProfile = () => {
           },
           method: 'GET',
         }
-        const data = await axios.get(`${backendUrl}/profiles/myProfile`, options);
+        const data = await axios.get(`${backendUrl}/users/me`, options);
         if (data.data) {
           console.log("userprofile", data.data)
           setProfile(data.data);
@@ -58,7 +58,6 @@ const MyProfile = () => {
           <CardContent>
               <Divider />
             <div className="centred">
-
               <br />
               <br />
               <Typography variant="h3" color="primary">
@@ -73,7 +72,7 @@ const MyProfile = () => {
                 We would like to thank you for your contributions to this community {"=)"}
               </Typography>
             </div>
-                          <br />
+              <br />
               <br />
               <Divider />
           </CardContent>

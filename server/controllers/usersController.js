@@ -35,9 +35,26 @@ export const getUserById = async (req, res) => {
   }
 };
 
+export const getMyUserProfile = async (req, res) => {
+  try {
+    // console.log("uid", req.userid);
+    const profileDetails = await pool.query(
+      // `SELECT avatar, username, email, name, userid FROM profiles, users WHERE profiles.userid = $1`,
+      `SELECT avatar, username, name, email FROM users WHERE id = $1`,
+      [req.user.id]
+    );
+    res.status(200).json(profileDetails.rows[0]);
+  } catch (error) {
+    res.status(500).json({
+      error: error,
+      success: false,
+    });
+  }
+};
+
 export const register = async (req, res) => {
   console.log("req.body", req.body);
-  const { name, email, password } = req.body;
+  const { name, email, password, username, avatar } = req.body;
   try {
     //first scernario
     const data = await pool.query("SELECT * FROM users WHERE email = $1", [
@@ -59,11 +76,13 @@ export const register = async (req, res) => {
         const user = {
           name,
           email,
+          avatar,
+          username,
           password: hash,
         };
         pool.query(
-          "INSERT INTO users (name, email, password) VALUES ($1,$2,$3)",
-          [user.name, user.email, user.password],
+          "INSERT INTO users (name, email, password, username, avatar) VALUES ($1,$2,$3,$4,$5)",
+          [user.name, user.email, user.password, user.avatar, user.username],
           (err) => {
             if (err) {
               console.error(err);

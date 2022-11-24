@@ -5,9 +5,11 @@ import {
   register,
   login,
   getProfile,
+  getMyUserProfile,
 } from "../controllers/usersController.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 import validInfo from "../middleware/validInfo.js";
+import { jwtAuth } from "../middleware/passport.js";
 // import pool from "../dbConfig.js";
 // import sequelize from "../dbConfig.js";
 
@@ -21,6 +23,7 @@ router.post("/register", validInfo, register);
 router.post("/login", validInfo, login);
 
 router.get("/profile", authMiddleware, getProfile);
+router.get("/me", jwtAuth, getMyUserProfile);
 
 // //GET route to query users table with Sequelize
 // router.get("/all", async (req, res) => {
