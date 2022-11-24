@@ -1,13 +1,17 @@
-import userEvent from '@testing-library/user-event'
-import React, { createContext, useState, ReactNode } from 'react'
+import React, { createContext, useState, ReactNode, useEffect } from 'react'
+import axios from 'axios'
 
 const backendUrl = "http://localhost:5000"
 
-type User = { name: string, email?: string  }
+type User = { name: string, email?: string }
 
 export type AuthContextValue = {
   user: User | null
   isLoggedIn: boolean
+  isAuthenticated: boolean
+  setAuth: (boolean: boolean) => void 
+  checkAuthenticated: () => void
+
   register: (email: string, password: string, name: string, username: string, avatar: string) => Promise<{ success: boolean, error: string }>
   login: (email: string, password: string) => Promise<{ success: boolean, error: string }>
   logout: () => void
@@ -16,9 +20,12 @@ export type AuthContextValue = {
 const initialAuth: AuthContextValue = {
   user: null,
   isLoggedIn: false,
+  isAuthenticated: false,
   register: () => { throw new Error('register not successful.'); },
   login: () => { throw new Error('login not successful.'); },
-  logout: () => { throw new Error('logout not successful.'); }
+  logout: () => { throw new Error('logout not successful.'); },
+  setAuth: () => { throw new Error('setAuth not successful.'); },
+  checkAuthenticated: () => { throw new Error('check authentication not successful.'); }
 }
 
 // ** Create Context
@@ -29,6 +36,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   // ** State
   const [user, setUser] = useState<User | null>(initialAuth.user)
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   
   const login = async (email: string, password: string) => {
     console.log('email', email)
@@ -64,7 +72,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       body: JSON.stringify({ email, password, name: nameForm, username, avatar })
     }
     const res = await fetch(`${backendUrl}/users/register`, options);
-    const { success, error, jwt, name} = await res.json()
+    const { success, error, jwt, name } = await res.json()
     localStorage.setItem("jwt", jwt)
     setUser({ ...user, name })
     setIsLoggedIn(true);
@@ -72,7 +80,38 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       return { success, error }
   }
 
+    const checkAuthenticated = async () => {
+    try {
+      const res = await fetch(`${backendUrl}/users/verify`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+      },
+        // headers: { 'jwt_token': localStorage.jwt }
+      });
+      const parseRes = await res.json();
 
-  return <AuthContext.Provider value={{ user, isLoggedIn, login, register, logout }}>{children}</AuthContext.Provider>
+      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+    } catch (error: any) {
+      console.error(error.message);
+    }
+    };
+  
+    const setAuth = (boolean: boolean) => {
+    setIsAuthenticated(boolean);
+  };
+  
+  useEffect(() => {
+    if (user) {
+      checkAuthenticated();
+      setUser(user);
+      setIsLoggedIn(true);
+    } else {
+      setUser(null)
+    }
+  }, []);
+
+
+  return <AuthContext.Provider value={{ user, isLoggedIn, login, register, logout, isAuthenticated, setAuth, checkAuthenticated }}>{children}</AuthContext.Provider>
 }
 
