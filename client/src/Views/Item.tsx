@@ -10,7 +10,6 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { deepPurple } from '@mui/material/colors';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Divider from "@mui/material/Divider";
@@ -74,6 +73,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
                         createdat,
                         price,
                         username,
+                        avatar,
                     } = post;
     
                     return (
@@ -83,9 +83,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     <BackButton />
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: deepPurple[700] }} aria-label="">
-            U
-          </Avatar>
+          <Avatar srcSet={avatar} aria-label="" />
         }
         // action={
         //   <IconButton aria-label="settings">

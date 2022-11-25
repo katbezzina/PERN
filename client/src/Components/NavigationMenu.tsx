@@ -13,6 +13,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import MenuIcon from '@mui/icons-material/Menu';
+import Person2Icon from '@mui/icons-material/Person2';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import "../Style/NavigationMenu.css"
 import { NavLink, Link } from "react-router-dom";
@@ -70,6 +71,14 @@ export default function NavigationMenu() {
               </ListItemIcon>
               <ListItemText primary={"Add a Post"} />
             </ListItemButton>
+          </NavLink>
+          <NavLink to="/MyProfile" className="noUnderline">
+            <ListItemButton>
+              <ListItemIcon>
+                <Person2Icon />
+              </ListItemIcon>
+                <ListItemText primary={"My Profile"} />
+          </ListItemButton>
         </NavLink>
         <ListItemButton>
           <ListItemIcon>
