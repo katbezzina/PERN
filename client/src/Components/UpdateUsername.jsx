@@ -4,7 +4,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import EditIcon from '@mui/icons-material/Edit';
 import { AuthContext } from "../Context/AuthContext"
+import "../Style/NavigationMenu.css"
 
 const style = {
   position: "absolute",
@@ -55,8 +57,8 @@ const UpdateUsername = ( ) => {
     const handleClose = () => setOpen(false);
     
     return (
-          <div>
-      <Button onClick={handleOpen}>Edit username</Button>
+    <div>
+      <Button onClick={handleOpen} ><EditIcon fontSize="small" color='secondary'/></Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -66,10 +68,16 @@ const UpdateUsername = ( ) => {
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Update your username
-          </Typography>
-          <input label='Your new username' onChange={handleUsernameChange} value={username} />
-          <button onClick={e => updateYourUsername(e)}>Update</button>
-          <button onClick={handleClose}>Close</button>
+            </Typography>
+            <br />
+            <br />
+            <TextField label='Your new username' onChange={handleUsernameChange} value={username} fullWidth />
+            <br />
+            <br />
+            <div className="buttons">
+              <button onClick={handleClose} className="noUnderline registerButton">Close</button>
+              <button onClick={e => updateYourUsername(e)} className="noUnderline loginButton">Update</button>
+            </div>
         </Box>
       </Modal>
     </div>

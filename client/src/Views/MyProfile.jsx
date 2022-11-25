@@ -1,6 +1,5 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import Avatar from '@mui/material/Avatar';
-import axios from 'axios'
 import Logout from "../Components/Logout"
 import UpdateUsername from "../Components/UpdateUsername"
 import Card from '@mui/material/Card';
@@ -33,10 +32,11 @@ const MyProfile = () => {
         avatar={
           <Avatar srcSet={user.avatar} aria-label="" />
         }
-        title={user.name}
-      />
+            title={user.name}
+          />
+          <UpdateUsername />
           <CardContent>
-              <Divider />
+            <Divider />
             <div className="centred">
               <br />
               <br />
@@ -46,7 +46,7 @@ const MyProfile = () => {
               <br />
               <br />
               <Typography variant="h6" color="secondary">
-                Save money. Save the planet. <br /> Save your tummy.
+                Save money. Save your tummy. <br /> Save the planet.
               </Typography>
             </div>
               <br />
@@ -55,7 +55,6 @@ const MyProfile = () => {
           </CardContent>
           <CardActions disableSpacing>
             <Logout />
-            <UpdateUsername />
           </CardActions>
         </Card>
       }
