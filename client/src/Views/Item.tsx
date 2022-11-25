@@ -32,9 +32,9 @@ const Item = () => {
 
     useEffect(() => {
         (async function () {
-            let data = await fetch(`${backendUrl}/posts/${id}`).then((results) => results.json());
+            let data = await fetch(`${backendUrl}/posts/postdetails/${id}`).then((results) => results.json());
             setPost(data);
-            console.log("Post data", data);
+            // console.log("Post data", data);
         })();
     }, []);
 

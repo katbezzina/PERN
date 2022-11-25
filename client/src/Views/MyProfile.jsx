@@ -3,6 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import Logout from "../Components/Logout"
 import UpdateUsername from "../Components/UpdateUsername"
 import Card from '@mui/material/Card';
+import Button from '@mui/material/Button';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
@@ -10,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import "../Style/MyProfile.css"
 import { AuthContext } from "../Context/AuthContext"
+import { Link } from "react-router-dom";
 
 
 // interface Profile {
@@ -55,8 +57,12 @@ const MyProfile = () => {
           </CardContent>
           <CardActions disableSpacing>
             <Logout />
+            <Link to="/ViewMyPosts" >
+              <Button>View my posts</Button>
+            </Link>
           </CardActions>
         </Card>
+        
       }
       </div>
   )

@@ -9,6 +9,7 @@ import Register from "./Views/Register.tsx";
 import Item from "./Views/Item.tsx";
 import AddPost from "./Views/AddPost.tsx";
 import MyProfile from "./Views/MyProfile";
+import ViewMyPosts from "./Views/ViewMyPosts";
 
 import { PostsContextProvider } from "./Context/PostsContext";
 import { AuthContextProvider } from "./Context/AuthContext.tsx";
@@ -28,6 +29,7 @@ function App() {
             <Route path="/Home/:id" element={<Item />} />
             <Route path="/MyPosting" element={<AddPost />} />
             <Route path="/MyProfile" element={<MyProfile />} />
+            <Route path="/ViewMyPosts" element={<ViewMyPosts />} />
           </Routes>
         </PostsContextProvider>
       </AuthContextProvider>
