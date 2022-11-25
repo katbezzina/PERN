@@ -18,22 +18,22 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-export const getUserById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    console.log("getuserbyid", id);
-    const user = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
-    res.status(200).json({
-      user: user.rows[0],
-      success: true,
-    });
-  } catch (error) {
-    res.status(500).json({
-      error: error,
-      success: false,
-    });
-  }
-};
+// export const getUserById = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     console.log("getuserbyid", id);
+//     const user = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
+//     res.status(200).json({
+//       user: user.rows[0],
+//       success: true,
+//     });
+//   } catch (error) {
+//     res.status(500).json({
+//       error: error,
+//       success: false,
+//     });
+//   }
+// };
 
 export const getMyUserProfile = async (req, res) => {
   try {
@@ -187,18 +187,18 @@ export const updateUsername = async (req, res) => {
   );
 };
 
-//Just for practice
-export const getProfile = async (req, res) => {
-  console.log("req.payload >>>>", req.payload);
-  res.status(201).json(`authorized request for ${req.payload.email}`);
-};
+// //Just for practice
+// export const getProfile = async (req, res) => {
+//   console.log("req.payload >>>>", req.payload);
+//   res.status(201).json(`authorized request for ${req.payload.email}`);
+// };
 
-//not used yet
-export const verification = async (req, res) => {
-  try {
-    res.json(true);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
-  }
-};
+// //not used yet
+// export const verification = async (req, res) => {
+//   try {
+//     res.json(true);
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send("Server error");
+//   }
+// };

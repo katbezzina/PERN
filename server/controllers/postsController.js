@@ -19,7 +19,7 @@ export const getPostDetails = async (req, res) => {
   try {
     let postid = req.params.id;
     const response = await pool.query(
-      "SELECT * FROM user_posts WHERE postid = $1",
+      "SELECT avatar, username, title, description, price, postimage, postcode, createdat, postid FROM user_posts, users WHERE (users.id = user_posts.usersid) AND (postid = $1)",
       [postid]
     );
     res.json(response.rows);
@@ -31,7 +31,7 @@ export const getPostDetails = async (req, res) => {
 export const getAllPosts = async (req, res) => {
   try {
     const response = await pool.query(
-      "SELECT * FROM user_posts ORDER BY createdat DESC"
+      "SELECT avatar, username, title, description, price, postimage, postcode, createdat, postid FROM user_posts, users WHERE users.id = user_posts.usersid ORDER BY createdat DESC"
     );
     // console.log("response", response.rows);
     res.json(response.rows);
