@@ -42,6 +42,9 @@ const [posts, setPosts] = useState([]);
 
   return  (
     <div className="marginTop">
+      <Typography gutterBottom variant="h5" component="div" color="primary">
+          My Posts
+      </Typography>
       <div className="cardsFlex">
         {posts &&
           posts.map((post) => {
@@ -56,6 +59,7 @@ const [posts, setPosts] = useState([]);
 
             return (
               <Card sx={{ maxWidth: 345 }} key={postid}>
+
                 <CardMedia
                   component={"img"}
                   alt=""
@@ -82,12 +86,11 @@ const [posts, setPosts] = useState([]);
                   <Typography variant="body2" color="text.secondary" className="alignRight" fontSize="medium">
                      &euro; {price}
                   </Typography>
-                  
                 </CardContent>
                 <CardActions>
                     <Button size="small">Edit</Button>
                 </CardActions>
-              </Card>
+                </Card>
             );
           })}
       </div>

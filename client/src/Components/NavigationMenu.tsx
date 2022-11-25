@@ -14,7 +14,8 @@ import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import MenuIcon from '@mui/icons-material/Menu';
 import Person2Icon from '@mui/icons-material/Person2';
-import LocalDiningIcon from '@mui/icons-material/LocalDining';
+import RiceBowlIcon from '@mui/icons-material/RiceBowl';
+import BallotIcon from '@mui/icons-material/Ballot';
 import "../Style/NavigationMenu.css"
 import { NavLink, Link } from "react-router-dom";
 
@@ -77,9 +78,17 @@ export default function NavigationMenu() {
               <ListItemIcon>
                 <Person2Icon />
               </ListItemIcon>
-                <ListItemText primary={"My Profile"} />
+                <ListItemText primary={"Profile"} />
           </ListItemButton>
-        </NavLink>
+            </NavLink>
+          <NavLink to="/ViewMyPosts" className="noUnderline">
+            <ListItemButton>
+              <ListItemIcon>
+                <BallotIcon />
+              </ListItemIcon>
+                <ListItemText primary={"My Posts"} />
+              </ListItemButton>
+            </NavLink>
         <ListItemButton>
           <ListItemIcon>
             {<LogoutIcon />}
@@ -129,7 +138,7 @@ export default function NavigationMenu() {
   return (
     <div className="navigationBottom">
       <Link to="/Home">
-        <LocalDiningIcon fontSize="large" color="primary"/>
+        <RiceBowlIcon fontSize="large" color="primary"/>
       </Link>
       <div>
       {(['bottom'] as const).map((anchor) => (

@@ -53,7 +53,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
         if (data.data) {
           console.log("userprofile", data.data)
           setUser(data.data);
-        }
+        } 
       }
       catch (error) {
         console.log('error', error)
