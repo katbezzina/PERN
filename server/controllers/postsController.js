@@ -39,3 +39,19 @@ export const getAllPosts = async (req, res) => {
     console.error(error.message);
   }
 };
+
+export const getMyPosts = async (req, res) => {
+  try {
+    const myPosts = await pool.query(
+      // `SELECT avatar, username, email, name, userid FROM profiles, users WHERE profiles.userid = $1`,
+      `SELECT title, description, username, price, postimage, postcode, createdat, postid FROM user_posts, users WHERE (users.id = user_posts.usersid) AND (users.id = $1)`,
+      [req.user.id]
+    );
+    res.status(200).json(myPosts.rows);
+  } catch (error) {
+    res.status(500).json({
+      error: error,
+      success: false,
+    });
+  }
+};
