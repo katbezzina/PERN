@@ -14,7 +14,6 @@ router.get("/allposts", getAllPosts);
 
 router.get("/postdetails/:id", getPostDetails);
 
-//to add middleware
-router.post("/mypost", addPost);
+router.post("/addpost", jwtAuth, addPost);
 
 export default router;

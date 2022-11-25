@@ -1,20 +1,5 @@
 import pool from "../dbConfig.js";
 
-export const addPost = async (req, res) => {
-  try {
-    const { title, username, description, price, postcode, postimage } =
-      req.body;
-    const newPost = await pool.query(
-      "INSERT INTO user_posts (title, username, description, price, postcode, postimage) VALUES($1, $2, $3, $4, $5, $6) RETURNING * ",
-      [title, username, description, price, postcode, postimage]
-    );
-    console.log(req.body);
-    res.json(newPost.rows[0]);
-  } catch (err) {
-    console.log(err.message);
-  }
-};
-
 export const getPostDetails = async (req, res) => {
   try {
     let postid = req.params.id;
@@ -44,7 +29,7 @@ export const getMyPosts = async (req, res) => {
   try {
     const myPosts = await pool.query(
       // `SELECT avatar, username, email, name, userid FROM profiles, users WHERE profiles.userid = $1`,
-      `SELECT title, description, username, price, postimage, postcode, createdat, postid FROM user_posts, users WHERE (users.id = user_posts.usersid) AND (users.id = $1)`,
+      `SELECT title, description, username, price, postimage, postcode, createdat, postid FROM user_posts, users WHERE (users.id = user_posts.usersid) AND (users.id = $1) ORDER BY createdat DESC`,
       [req.user.id]
     );
     res.status(200).json(myPosts.rows);
@@ -53,5 +38,20 @@ export const getMyPosts = async (req, res) => {
       error: error,
       success: false,
     });
+  }
+};
+
+export const addPost = async (req, res) => {
+  try {
+    const uid = req.user.id;
+    const { title, description, price, postcode, postimage } = req.body;
+    const newPost = await pool.query(
+      "INSERT INTO user_posts (title, description, price, postcode, postimage, usersid) VALUES ($1, $2, $3, $4, $5, $6) RETURNING * ",
+      [title, description, price, postcode, postimage, uid]
+    );
+    console.log(req.body);
+    res.status(200).json(newPost.rows[0]);
+  } catch (err) {
+    console.log(err.message);
   }
 };
