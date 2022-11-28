@@ -17,6 +17,6 @@ router.get("/postdetails/:id", getPostDetails);
 
 router.post("/addpost", jwtAuth, addPost);
 
-router.put("/updatemypost", jwtAuth, updateMyPost);
+router.put("/updatemypost/:id", jwtAuth, updateMyPost);
 
 export default router;
