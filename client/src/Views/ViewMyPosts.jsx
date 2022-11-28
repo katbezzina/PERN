@@ -11,6 +11,8 @@ import Divider from "@mui/material/Divider";
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import "../Style/Home.css";
 import BackButton from '../Components/BackButton';
+import UpdatePost from '../Components/UpdatePost';
+import DeleteMyPost from '../Components/DeleteMyPost';
 
 const backendUrl = "http://localhost:5000";
 
@@ -91,7 +93,7 @@ const [posts, setPosts] = useState([]);
                   </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">Edit</Button>
+                    <UpdatePost /> {"   "} <DeleteMyPost />
                 </CardActions>
                 </Card>
             );

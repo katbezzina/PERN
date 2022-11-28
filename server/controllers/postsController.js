@@ -4,6 +4,7 @@ export const getPostDetails = async (req, res) => {
   try {
     let postid = req.params.id;
     const response = await pool.query(
+      //SELECT avatar, username, title, description, price, postimage, postcode, createdat, postid, message, messagecreatedat FROM user_posts, users, comments WHERE ((users.id = user_posts.usersid) AND (postid = $1)) AND ((user_posts.postid = comments.c_postid))"
       "SELECT avatar, username, title, description, price, postimage, postcode, createdat, postid FROM user_posts, users WHERE (users.id = user_posts.usersid) AND (postid = $1)",
       [postid]
     );
@@ -78,4 +79,14 @@ export const updateMyPost = async (req, res) => {
       }
     }
   );
+};
+
+export const deleteMyPost = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await pool.query(`DELETE FROM user_posts WHERE postid = $1`, [id]);
+    res.json("my post was deleted!");
+  } catch (err) {
+    console.log(err.message);
+  }
 };
