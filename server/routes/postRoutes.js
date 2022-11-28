@@ -4,6 +4,7 @@ import {
   getAllPosts,
   getPostDetails,
   getMyPosts,
+  updateMyPost,
 } from "../controllers/postsController.js";
 import { jwtAuth } from "../middleware/passport.js";
 
@@ -15,5 +16,7 @@ router.get("/allposts", getAllPosts);
 router.get("/postdetails/:id", getPostDetails);
 
 router.post("/addpost", jwtAuth, addPost);
+
+router.put("/updatemypost", jwtAuth, updateMyPost);
 
 export default router;

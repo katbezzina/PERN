@@ -55,3 +55,25 @@ export const addPost = async (req, res) => {
     console.log(err.message);
   }
 };
+
+export const updateMyPost = async (req, res) => {
+  const uid = req.user.id;
+  const { title, description, price, postcode, postimage } = req.body;
+  pool.query(
+    `UPDATE user_posts SET title = $1, description = $2, price = $3, postcode = $4, postimage = $5 WHERE postid = $6;`,
+    [title, description, price, postcode, postimage, uid],
+    (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({
+          error: "Database error",
+          success: false,
+        });
+      } else {
+        res.status(200).send({
+          success: true,
+        });
+      }
+    }
+  );
+};

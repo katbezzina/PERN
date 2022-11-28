@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Avatar from '@mui/material/Avatar';
 import Logout from "../Components/Logout"
-import UpdateUsername from "../Components/UpdateUsername"
+import UpdateProfile from "../Components/UpdateProfile"
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
 import CardHeader from '@mui/material/CardHeader';
@@ -36,7 +36,7 @@ const MyProfile = () => {
         }
             title={user.name}
           />
-          <UpdateUsername />
+          <UpdateProfile />
           <CardContent>
             <Divider />
             <div className="centred">
@@ -52,14 +52,14 @@ const MyProfile = () => {
               </Typography>
             </div>
               <br />
-              <br />
+            <br />
+                        <Link to="/ViewMyPosts" >
+              <Button>View my posts</Button>
+            </Link>
               <Divider />
           </CardContent>
           <CardActions disableSpacing>
             <Logout />
-            <Link to="/ViewMyPosts" >
-              <Button>View my posts</Button>
-            </Link>
           </CardActions>
         </Card>
         

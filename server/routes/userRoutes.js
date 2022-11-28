@@ -6,7 +6,7 @@ import {
   login,
   // getProfile,
   getMyUserProfile,
-  updateUsername,
+  updateUsernameAndAvatar,
   // verification,
 } from "../controllers/usersController.js";
 import authMiddleware from "../middleware/authMiddleware.js";
@@ -26,7 +26,7 @@ router.post("/login", validInfo, login);
 
 // router.get("/profile", authMiddleware, getProfile);
 router.get("/me", jwtAuth, getMyUserProfile);
-router.put("/updateUsername", jwtAuth, updateUsername);
+router.put("/updateUsernameAndAvatar", jwtAuth, updateUsernameAndAvatar);
 // router.post("/verify", jwtAuth, verification);
 
 // //GET route to query users table with Sequelize

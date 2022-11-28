@@ -165,12 +165,12 @@ export const login = async (req, res) => {
   }
 };
 
-export const updateUsername = async (req, res) => {
+export const updateUsernameAndAvatar = async (req, res) => {
   console.log("req.user", req.user);
-  const { username } = req.body;
+  const { username, avatar } = req.body;
   pool.query(
-    `UPDATE users SET username = $1 WHERE id = $2;`,
-    [username, req.user.id],
+    `UPDATE users SET username = $1, avatar = $2 WHERE id = $3;`,
+    [username, avatar, req.user.id],
     (err) => {
       if (err) {
         console.error(err);

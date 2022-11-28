@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import "../Style/Home.css";
+import BackButton from '../Components/BackButton';
 
 const backendUrl = "http://localhost:5000";
 
@@ -42,6 +43,8 @@ const [posts, setPosts] = useState([]);
 
   return  (
     <div className="marginTop">
+      <div></div>
+      <BackButton className="left"/>
       <Typography gutterBottom variant="h5" component="div" color="primary">
           My Posts
       </Typography>
