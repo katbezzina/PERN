@@ -3,7 +3,6 @@
 import cors from "cors";
 import express from "express";
 import userRoutes from "./routes/userRoutes.js";
-import profileRoutes from "./routes/profileRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
 import passport from "passport";
@@ -44,9 +43,6 @@ app.listen(port, () => {
 
 //users
 app.use("/users", userRoutes);
-
-//profile
-app.use("/profiles", profileRoutes);
 
 //posts
 app.use("/posts", postRoutes);
