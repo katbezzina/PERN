@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-import { useParams } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -22,15 +21,13 @@ const style = {
   p: 4,
 };
 
-const UpdatePost = ( ) => {
-    const {posts, getPosts} = useContext(PostsContext)
-    const [title, setTitle] = useState(posts.title)
-    const [description, setDescription] = useState(posts.description);
-    const [price, setPrice] = useState(posts.price);
-    const [postcode, setPostcode] = useState(posts.postcode);
-    const [postimage, setPostImage] = useState(posts.postimage)
-
-    let { id } = useParams();
+//pass postid as props to select that particular post
+const UpdatePost = ({postid}) => {
+    const [title, setTitle] = useState();
+    const [description, setDescription] = useState();
+    const [price, setPrice] = useState();
+    const [postcode, setPostcode] = useState();
+    const [postimage, setPostImage] = useState();
 
 
     const updateMyPost = async e => {
@@ -45,12 +42,10 @@ const UpdatePost = ( ) => {
                 method: 'PUT',
                 body: JSON.stringify({title, description, price, postcode, postimage}),
             }
-             const response =  await fetch(`${backendUrl}/posts/updatemypost/${id}`, options)
+             const response =  await fetch(`${backendUrl}/posts/updatemypost/${postid}`, options)
             const { success } = await response.json()
-            console.log("success update", success)
-            if (success) {
-                getPosts()
-            }
+          console.log("success update", success)
+          window.location.reload();
         }
         catch (error) {
             console.log('error', error)

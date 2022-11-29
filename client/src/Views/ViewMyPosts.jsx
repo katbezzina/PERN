@@ -17,6 +17,8 @@ import DeleteMyPost from '../Components/DeleteMyPost';
 const backendUrl = "http://localhost:5000";
 
 const ViewMyPosts = () => {
+
+  //organise logic in one component for easy prop handling
 const [posts, setPosts] = useState([]);
 
   const getMyPosts = async () => {
@@ -93,7 +95,7 @@ const [posts, setPosts] = useState([]);
                   </Typography>
                 </CardContent>
                 <CardActions>
-                    <UpdatePost /> {"   "} <DeleteMyPost postid={postid} />
+                    <UpdatePost postid={postid}  /> {"   "} <DeleteMyPost postid={postid} />
                 </CardActions>
                 </Card>
             );
