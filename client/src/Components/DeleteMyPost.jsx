@@ -37,8 +37,9 @@ function DeleteMyPost({ postid }) {
           },
           method: 'DELETE',
         }
+        //postid is coming from the props not from the back-end
          await fetch(`${backendUrl}/posts/deletemypost/${postid}`, options);
-
+         window.location.reload();
       }
       catch (error) {
         console.log('error', error)
