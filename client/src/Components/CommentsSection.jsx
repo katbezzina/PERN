@@ -20,14 +20,14 @@ let { id } = useParams();
   return (
       <div > 
           {comments && comments.map((comment) => {
-              const {username, message, messagecreatedat, avatar, c_usersid } = comment;
+              const {username, message, messagecreatedat, avatar, commentid} = comment;
               return (
-                  <div key={c_usersid}>
-                    <div className="row">
+                  <div key={commentid}>
+                    <div className="row" key={commentid}>
                           <Avatar srcSet={avatar} aria-label="" />
                           <div>
                             <Typography variant="h7" color="text.secondary">{message}</Typography>
-                            <Typography className="smaller" color="text.secondary">{username} , {messagecreatedat}</Typography>
+                            <Typography className="usernameSize">{username} , {messagecreatedat}</Typography>
                             <br/>
                           </div>
                     </div>

@@ -1,10 +1,20 @@
-.smaller{
-    font-size:x-small;
-    color: rgb(131, 130, 132);
-}
-
 .row{
     display: flex;
     flex-direction: row;
     gap: 20px;
+}
+
+.usernameSize {
+    font-size: 8px;
+    color: rgb(170, 155, 185);
+}
+
+.commentRow{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.commentButton{
+    width: 30px;
 }
