@@ -1,0 +1,10 @@
+.smaller{
+    font-size:x-small;
+    color: rgb(131, 130, 132);
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
