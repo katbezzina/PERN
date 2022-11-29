@@ -93,7 +93,7 @@ const [posts, setPosts] = useState([]);
                   </Typography>
                 </CardContent>
                 <CardActions>
-                    <UpdatePost /> {"   "} <DeleteMyPost />
+                    <UpdatePost /> {"   "} <DeleteMyPost postid={postid} />
                 </CardActions>
                 </Card>
             );

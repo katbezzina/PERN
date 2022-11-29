@@ -1,12 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
-import axios from 'axios'
+
 import "../Style/NavigationMenu.css";
 
 
@@ -23,14 +23,12 @@ const style = {
 
 const backendUrl = "http://localhost:5000";
 
-function DeleteMyPost() {
+function DeleteMyPost({ postid }) {
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
     
-  let { id } = useParams();
-  let [posts, setPost] = useState([]);
-
   const deleteThisPost = async () => {
       try {
         const options = {
@@ -39,18 +37,16 @@ function DeleteMyPost() {
           },
           method: 'DELETE',
         }
-        const data = await axios.delete(`${backendUrl}/posts/deletemypost/${id}`, options);
-        if (data.data) {
-          console.log("deletepost", data.data)
-          setPost(data.data);
-        } 
+         await fetch(`${backendUrl}/posts/deletemypost/${postid}`, options);
+
       }
       catch (error) {
         console.log('error', error)
       }
   }
 
-  return (
+
+    return (
     <>
       <Button onClick={handleOpen}><DeleteIcon fontSize="small" color='secondary'/></Button>
       <Modal
@@ -72,11 +68,10 @@ function DeleteMyPost() {
             >
               No
             </button>
-            <Link to="/Login">
+
               <button onClick={deleteThisPost} className="noUnderline loginButton">
                 Delete anyway!
               </button>
-            </Link>
           </div>
         </Box>
       </Modal>
