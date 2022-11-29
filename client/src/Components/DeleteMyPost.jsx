@@ -1,10 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import "../Style/NavigationMenu.css";

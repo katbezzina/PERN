@@ -4,7 +4,6 @@ export const getPostDetails = async (req, res) => {
   try {
     let postid = req.params.id;
     const response = await pool.query(
-      //SELECT avatar, username, title, description, price, postimage, postcode, createdat, postid, message, messagecreatedat FROM user_posts, users, comments WHERE ((users.id = user_posts.usersid) AND (postid = $1)) AND ((user_posts.postid = comments.c_postid))"
       "SELECT avatar, username, title, description, price, postimage, postcode, createdat, postid FROM user_posts, users WHERE (users.id = user_posts.usersid) AND (postid = $1)",
       [postid]
     );

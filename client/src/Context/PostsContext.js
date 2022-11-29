@@ -21,8 +21,6 @@ export const PostsContextProvider = (props) => {
     getPosts();
   }, []);
 
-  // console.log("contextposts", posts);
-
   return (
     <PostsContext.Provider value={{ posts }}>
       {props.children}

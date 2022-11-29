@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -18,12 +18,17 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import "../Style/ItemCard.css";
 import BackButton from "../Components/BackButton"
+import CommentsSection from "../Components/CommentsSection";
+import InputComment from "../Components/InputComment";
+import { AuthContext } from "../Context/AuthContext";
 
 // import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const backendUrl = "http://localhost:5000";
 
 const Item = () => {
+
+  const { user } = useContext(AuthContext)
 
   //Fetching details
 
@@ -73,7 +78,8 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
                         createdat,
                         price,
                         username,
-                        avatar,
+                      avatar,
+                        // message, messagecreatedat
                     } = post;
     
                     return (
@@ -85,11 +91,6 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
         avatar={
           <Avatar srcSet={avatar} aria-label="" />
         }
-        // action={
-        //   <IconButton aria-label="settings">
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
         title={username}
         subheader={createdat}
       />
@@ -137,18 +138,12 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph color="text.secondary">Comments</Typography>
-          <Typography paragraph>
-
-          </Typography>
-          <Typography paragraph>
-
-          </Typography>
-          <Typography paragraph>
-          </Typography>
-          <Typography>
-
-          </Typography>
+          <Typography variant="h6" color="text.secondary" >Comments</Typography>
+          <br />
+          {user ? <InputComment postid={postid} /> : null}
+          <br />
+          <br />                  
+          <CommentsSection />
         </CardContent>
       </Collapse>
     </Card>

@@ -21,6 +21,7 @@ function App() {
       <AuthContextProvider>
         <PostsContextProvider>
           <NavigationMenu />
+
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/Home" element={<Home />} />

@@ -59,7 +59,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
         console.log('error', error)
       }
   }
-
     useEffect(() => {
     getUser()
   }, []);
