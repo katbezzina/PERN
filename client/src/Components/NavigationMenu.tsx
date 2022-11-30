@@ -77,7 +77,7 @@ export default function NavigationMenu() {
               <ListItemIcon>
                 <Person2Icon />
               </ListItemIcon>
-                <ListItemText primary={user.name} />
+                <ListItemText primary={"My Profile"} />
           </ListItemButton>
             </NavLink>
           <NavLink to="/ViewMyPosts" className="noUnderline">
