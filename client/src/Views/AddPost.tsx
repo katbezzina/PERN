@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
+import RiceBowlIcon from '@mui/icons-material/RiceBowl';
 
 import "../Style/AddPost.css"
 
@@ -39,7 +40,7 @@ export default function AddPost() {
     
   <div className="center">
       <Paper elevation={3} className="paperStyle">
-        <Typography variant="h5" color="text.secondary">My Posting</Typography>
+        <Typography variant="h5" color="text.secondary"><RiceBowlIcon /> My Posting <RiceBowlIcon /></Typography>
         <br/>
         <form onSubmit={onSubmitForm} className="flexible">
         <TextField

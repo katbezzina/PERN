@@ -7,7 +7,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import FmdGoodIcon from '@mui/icons-material/FmdGood';
+import FmdGoodIcon from '@mui/icons-material/FmdGood'
+import RiceBowlIcon from '@mui/icons-material/RiceBowl';
 import "../Style/Home.css";
 import BackButton from '../Components/BackButton';
 import UpdatePost from '../Components/UpdatePost';
@@ -49,7 +50,7 @@ const [posts, setPosts] = useState([]);
       <div></div>
       <BackButton className="left"/>
       <Typography gutterBottom variant="h5" component="div" color="primary">
-          My Posts
+          <RiceBowlIcon />  My Posts  <RiceBowlIcon />
       </Typography>
       <div className="cardsFlex">
         {posts &&

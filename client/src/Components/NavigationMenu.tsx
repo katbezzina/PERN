@@ -7,7 +7,6 @@ import List from '@mui/material/List';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
@@ -60,9 +59,9 @@ export default function NavigationMenu() {
         <Link to="/Home" className="noUnderline">
             <ListItemButton>
               <ListItemIcon>
-                <HomeIcon />
+                <RiceBowlIcon />
               </ListItemIcon>
-              <ListItemText primary={"Home"} />
+              <ListItemText primary={"Food Posts"} />
             </ListItemButton>
         </Link>
         <NavLink to="/MyPosting" className="noUnderline">
@@ -78,7 +77,7 @@ export default function NavigationMenu() {
               <ListItemIcon>
                 <Person2Icon />
               </ListItemIcon>
-                <ListItemText primary={"Profile"} />
+                <ListItemText primary={user.name} />
           </ListItemButton>
             </NavLink>
           <NavLink to="/ViewMyPosts" className="noUnderline">
@@ -108,9 +107,9 @@ export default function NavigationMenu() {
         <Link to="/Home" className="noUnderline">
             <ListItemButton>
               <ListItemIcon>
-                <HomeIcon />
+                <RiceBowlIcon />
               </ListItemIcon>
-              <ListItemText primary={"Home"} />
+              <ListItemText primary={"Food Posts"} />
             </ListItemButton>
         </Link>
         <NavLink to="/Login" className="noUnderline">
@@ -140,6 +139,7 @@ export default function NavigationMenu() {
       <Link to="/Home">
         <RiceBowlIcon fontSize="large" color="primary"/>
       </Link>
+      <p className="welcomeText">Welcome {user?.name}</p>
       <div>
       {(['bottom'] as const).map((anchor) => (
         <React.Fragment key={anchor}>

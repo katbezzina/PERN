@@ -47,3 +47,10 @@
     justify-content: center;
 }
 
+.welcomeText{
+    color: rgb(43, 8, 74);
+    font-family: monospace;
+    font-size: larger;
+    font-weight: 600;
+}
+
