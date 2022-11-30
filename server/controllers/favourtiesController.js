@@ -47,11 +47,11 @@ export const getMyFavourites = async (req, res) => {
 export const countFavourites = async (req, res) => {
   try {
     const pid = req.params.id;
-    const count = await pool.query(
+    const counting = await pool.query(
       `SELECT COUNT (postid) FROM favourites WHERE postid = $1`,
       [pid]
     );
-    res.status(200).json(count.rows[0]);
+    res.status(200).json(counting.rows[0]);
   } catch (error) {
     res.status(500).json({
       error: error,

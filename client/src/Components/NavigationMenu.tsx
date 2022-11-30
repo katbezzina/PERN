@@ -80,7 +80,7 @@ export default function NavigationMenu() {
                 <ListItemText primary={"My Profile"} />
           </ListItemButton>
             </NavLink>
-          <NavLink to="/ViewMyPosts" className="noUnderline">
+          <NavLink to="/MyPosts" className="noUnderline">
             <ListItemButton>
               <ListItemIcon>
                 <BallotIcon />

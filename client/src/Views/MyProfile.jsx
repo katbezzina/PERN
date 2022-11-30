@@ -53,9 +53,14 @@ const MyProfile = () => {
             </div>
               <br />
             <br />
-                        <Link to="/ViewMyPosts" >
-              <Button>View my posts</Button>
+            <div className="spacearound">
+            <Link to="/MyPosts" >
+              <Button>my posts</Button>
             </Link>
+            <Link to="/MyFavourites" >
+              <Button>my favourites</Button>
+            </Link>
+            </div>
               <Divider />
           </CardContent>
           <CardActions disableSpacing>

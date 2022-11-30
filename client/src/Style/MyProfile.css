@@ -8,3 +8,9 @@
 .centred{
     text-align: center;
 }
+
+.spacearound{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
