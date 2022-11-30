@@ -1,13 +1,12 @@
 import {useContext, useEffect} from 'react'
 import { PostsContext } from '../Context/PostsContext'
 import Card from "@mui/material/Card";
-
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import FmdGoodIcon from '@mui/icons-material/FmdGood'
-import RiceBowlIcon from '@mui/icons-material/RiceBowl';
 import BackButton from '../Components/BackButton';
 
 const ViewMyLikes = () => {
@@ -23,7 +22,7 @@ useEffect(() => {
       <div></div>
       <BackButton className="left"/>
       <Typography gutterBottom variant="h5" component="div" color="primary">
-          <RiceBowlIcon />  My Favourites  <RiceBowlIcon />
+          My <FavoriteIcon/> <FavoriteIcon/> <FavoriteIcon/>
       </Typography>
       <div className="cardsFlex">
         {favourites &&

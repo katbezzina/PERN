@@ -6,7 +6,7 @@ import LandingPage from "./Views/LandingPage";
 import Home from "./Views/Home";
 import Login from "./Views/Login.tsx";
 import Register from "./Views/Register.tsx";
-import Item from "./Views/Item.tsx";
+import Item from "./Views/Item";
 import AddPost from "./Views/AddPost.tsx";
 import MyProfile from "./Views/MyProfile";
 import ViewMyPosts from "./Views/ViewMyPosts";

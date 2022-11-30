@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
 const backendUrl = "http://localhost:5000";
@@ -8,12 +8,26 @@ export const PostsContext = createContext();
 export const PostsContextProvider = (props) => {
   const [posts, setPosts] = useState([]);
   const [favourites, setFavourites] = useState([]);
+  //only use state once!
 
   const getPosts = async () => {
     try {
       let response = await fetch(`${backendUrl}/posts/allposts`);
       let jsonDATA = await response.json();
       setPosts(jsonDATA);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  //passing a parameter to the fucntion
+  const getCountedFavourites = async (postid) => {
+    try {
+      let response = await fetch(
+        `${backendUrl}/favourites/countfavourites/${postid}`
+      );
+      let jsonDATA = await response.json();
+      return jsonDATA;
     } catch (error) {
       console.log(error.message);
     }
@@ -45,7 +59,9 @@ export const PostsContextProvider = (props) => {
   }, []);
 
   return (
-    <PostsContext.Provider value={{ posts, favourites, getMyFavourites }}>
+    <PostsContext.Provider
+      value={{ posts, favourites, getMyFavourites, getCountedFavourites }}
+    >
       {props.children}
     </PostsContext.Provider>
   );

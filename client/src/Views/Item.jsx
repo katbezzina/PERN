@@ -8,9 +8,8 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Divider from "@mui/material/Divider";
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
@@ -21,6 +20,7 @@ import BackButton from "../Components/BackButton"
 import CommentsSection from "../Components/CommentsSection";
 import InputComment from "../Components/InputComment";
 import { AuthContext } from "../Context/AuthContext";
+import { PostsContext } from "../Context/PostsContext";
 
 // import MoreVertIcon from '@mui/icons-material/MoreVert';
 
@@ -29,26 +29,31 @@ const backendUrl = "http://localhost:5000";
 const Item = () => {
 
   const { user } = useContext(AuthContext)
+  const { getCountedFavourites } = useContext(PostsContext)
 
   //Fetching details
 
-    let { id } = useParams();
-    let [posts, setPost] = useState([]);
-
+  let { id } = useParams();
+  let [posts, setPost] = useState([]);
+  let [favouritecount, setFavouriteCount] = useState(null);
+  
     useEffect(() => {
         (async function () {
             let data = await fetch(`${backendUrl}/posts/postdetails/${id}`).then((results) => results.json());
-            setPost(data);
+          setPost(data);
+          //we passaed a parameter in the context
+          const { count } = await getCountedFavourites(id)
+          setFavouriteCount(count);
             // console.log("Post data", data);
         })();
     }, []);
 
 //Styling card
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
+// interface ExpandMoreProps extends IconButtonProps {
+//   expand: boolean;
+// }
 
-const ExpandMore = styled((props: ExpandMoreProps) => {
+const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
@@ -59,7 +64,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
     
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -100,13 +105,21 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
         image={postimage}
         alt=""
       />
-      <CardContent>
+        <CardContent>
         <Typography variant="h5" color="text.secondary">
           {title}
         </Typography>
         <Typography variant="body2" color="text.secondary" className="alignRight">
           <FmdGoodIcon fontSize="small" /> {postcode}
         </Typography>
+        {favouritecount ?              
+        <Typography variant="h7" color="text.secondary">
+          &hearts; { favouritecount }
+        </Typography> :
+        <Typography variant="h7" color="text.secondary">
+          &hearts; {" "}0
+          </Typography>}
+        <br></br>
         <br></br>
         <Divider />
         <br></br>
@@ -123,9 +136,6 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteBorderIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
         </IconButton>
         <ExpandMore
           expand={expanded}

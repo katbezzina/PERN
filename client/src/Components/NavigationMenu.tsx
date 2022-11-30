@@ -14,7 +14,6 @@ import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import MenuIcon from '@mui/icons-material/Menu';
 import Person2Icon from '@mui/icons-material/Person2';
 import RiceBowlIcon from '@mui/icons-material/RiceBowl';
-import BallotIcon from '@mui/icons-material/Ballot';
 import "../Style/NavigationMenu.css"
 import { NavLink, Link } from "react-router-dom";
 
@@ -79,14 +78,6 @@ export default function NavigationMenu() {
               </ListItemIcon>
                 <ListItemText primary={"My Profile"} />
           </ListItemButton>
-            </NavLink>
-          <NavLink to="/MyPosts" className="noUnderline">
-            <ListItemButton>
-              <ListItemIcon>
-                <BallotIcon />
-              </ListItemIcon>
-                <ListItemText primary={"My Posts"} />
-              </ListItemButton>
             </NavLink>
         <ListItemButton>
           <ListItemIcon>
