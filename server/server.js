@@ -5,6 +5,7 @@ import express from "express";
 import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
+import favourtiteRoutes from "./routes/favouriteRoutes.js";
 import passport from "passport";
 import { passportConfig } from "./middleware/passport.js";
 import * as dotenv from "dotenv";
@@ -49,5 +50,8 @@ app.use("/posts", postRoutes);
 
 //comments
 app.use("/comments", commentRoutes);
+
+//favourties
+app.use("/favourites", favourtiteRoutes);
 
 export default app;
