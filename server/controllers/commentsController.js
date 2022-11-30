@@ -31,3 +31,17 @@ export const addComment = async (req, res) => {
     console.log(err.message);
   }
 };
+
+export const deleteMyComment = async (req, res) => {
+  try {
+    const uid = req.user.id;
+    const commentid = req.params.id;
+    await pool.query(
+      `DELETE FROM comments WHERE usersid = $1 AND commentid = $2`,
+      [uid, commentid]
+    );
+    res.json("my post was deleted!");
+  } catch (err) {
+    console.log(err.message);
+  }
+};
