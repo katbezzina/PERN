@@ -29,12 +29,12 @@ const backendUrl = "http://localhost:5000";
 const Item = () => {
 
   const { user } = useContext(AuthContext)
-  const { getCountedFavourites } = useContext(PostsContext)
+  const { getCountedFavouritesForOnePost } = useContext(PostsContext)
 
   //Fetching details
 
   let { id } = useParams();
-  let [posts, setPost] = useState([]);
+  let [onepost, setPost] = useState([]);
   let [favouritecount, setFavouriteCount] = useState(null);
   
     useEffect(() => {
@@ -42,7 +42,7 @@ const Item = () => {
             let data = await fetch(`${backendUrl}/posts/postdetails/${id}`).then((results) => results.json());
           setPost(data);
           //we passaed a parameter in the context
-          const { count } = await getCountedFavourites(id)
+          const { count } = await getCountedFavouritesForOnePost(id)
           setFavouriteCount(count);
             // console.log("Post data", data);
         })();
@@ -70,10 +70,11 @@ const ExpandMore = styled((props) => {
     setExpanded(!expanded);
   };
 
+
     return (
         <div className="cardFlex">
-            {posts &&
-                posts.map((post) => {
+            {onepost &&
+                onepost.map((post) => {
                     const {
                         postid,
                         title,
@@ -97,7 +98,7 @@ const ExpandMore = styled((props) => {
           <Avatar srcSet={avatar} aria-label="" />
         }
         title={username}
-        subheader={createdat}
+        subheader={createdat.substring(0,10)}
       />
       <CardMedia
         component="img"

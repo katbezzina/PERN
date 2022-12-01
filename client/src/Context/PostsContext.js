@@ -21,7 +21,7 @@ export const PostsContextProvider = (props) => {
   };
 
   //passing a parameter to the fucntion
-  const getCountedFavourites = async (postid) => {
+  const getCountedFavouritesForOnePost = async (postid) => {
     try {
       let response = await fetch(
         `${backendUrl}/favourites/countfavourites/${postid}`
@@ -60,7 +60,12 @@ export const PostsContextProvider = (props) => {
 
   return (
     <PostsContext.Provider
-      value={{ posts, favourites, getMyFavourites, getCountedFavourites }}
+      value={{
+        posts,
+        favourites,
+        getMyFavourites,
+        getCountedFavouritesForOnePost,
+      }}
     >
       {props.children}
     </PostsContext.Provider>
