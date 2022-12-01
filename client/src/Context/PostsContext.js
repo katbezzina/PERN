@@ -7,7 +7,7 @@ export const PostsContext = createContext();
 
 export const PostsContextProvider = (props) => {
   const [posts, setPosts] = useState([]);
-  const [favourites, setFavourites] = useState([]);
+  const [myFavourites, setMyFavourites] = useState([]);
   //only use state once!
 
   const getPosts = async () => {
@@ -47,7 +47,7 @@ export const PostsContextProvider = (props) => {
       );
       if (data.data) {
         console.log("myfavourites", data.data);
-        setFavourites(data.data);
+        setMyFavourites(data.data);
       }
     } catch (error) {
       console.log("error", error);
@@ -56,13 +56,14 @@ export const PostsContextProvider = (props) => {
 
   useEffect(() => {
     getPosts();
+    getMyFavourites();
   }, []);
 
   return (
     <PostsContext.Provider
       value={{
         posts,
-        favourites,
+        myFavourites,
         getMyFavourites,
         getCountedFavouritesForOnePost,
       }}

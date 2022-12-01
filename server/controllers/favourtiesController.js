@@ -23,7 +23,7 @@ export const deleteMyFavourite = async (req, res) => {
       `DELETE FROM favourites WHERE usersid = $1 AND postid = $2`,
       [uid, pid]
     );
-    res.json("my post was deleted!");
+    res.json("my favourite was deleted!");
   } catch (err) {
     console.log(err.message);
   }
@@ -32,7 +32,7 @@ export const deleteMyFavourite = async (req, res) => {
 export const getMyFavourites = async (req, res) => {
   try {
     const myFavourites = await pool.query(
-      `SELECT title, description, price, postimage, postcode, user_posts.postid, createdat, favourites.usersid FROM user_posts, favourites WHERE (user_posts.postid = favourites.postid) AND (favourites.usersid = $1)`,
+      `SELECT title, description, price, postimage, postcode, favourites.postid, createdat, favourites.usersid FROM user_posts, favourites WHERE (user_posts.postid = favourites.postid) AND (favourites.usersid = $1)`,
       [req.user.id]
     );
     res.status(200).json(myFavourites.rows);

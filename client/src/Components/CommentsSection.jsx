@@ -27,7 +27,7 @@ let { id } = useParams();
                           <Avatar srcSet={avatar} aria-label="" />
                           <div>
                             <Typography variant="h7" color="text.secondary">{message}</Typography>
-                            <Typography className="usernameSize">{username} , {messagecreatedat}</Typography>
+                            <Typography variant="body2" className="usernameSize">{username}, {messagecreatedat.substring(0,19)}</Typography>
                             <br/>
                           </div>
                     </div>

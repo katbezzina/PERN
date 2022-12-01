@@ -11,11 +11,11 @@ import BackButton from '../Components/BackButton';
 
 const ViewMyLikes = () => {
 
-    const { getMyFavourites, favourites } = useContext(PostsContext)
+    const { getMyFavourites, myFavourites } = useContext(PostsContext)
     
-useEffect(() => {
-    getMyFavourites();
-  }, [])
+// useEffect(() => {
+//     getMyFavourites();
+//   }, [])
 
   return  (
     <div className="marginTop">
@@ -25,8 +25,8 @@ useEffect(() => {
           My <FavoriteIcon/> <FavoriteIcon/> <FavoriteIcon/>
       </Typography>
       <div className="cardsFlex">
-        {favourites &&
-          favourites.map((favourite) => {
+        {myFavourites &&
+          myFavourites.map((favourite) => {
             const {
               postid,
               title,

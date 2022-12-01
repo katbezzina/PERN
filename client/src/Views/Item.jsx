@@ -13,7 +13,9 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Divider from "@mui/material/Divider";
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 
 import "../Style/ItemCard.css";
 import BackButton from "../Components/BackButton"
@@ -29,24 +31,72 @@ const backendUrl = "http://localhost:5000";
 const Item = () => {
 
   const { user } = useContext(AuthContext)
-  const { getCountedFavouritesForOnePost } = useContext(PostsContext)
+  const { myFavourites, getCountedFavouritesForOnePost, getMyFavourites } = useContext(PostsContext)
 
-  //Fetching details
 
   let { id } = useParams();
   let [onepost, setPost] = useState([]);
   let [favouritecount, setFavouriteCount] = useState(null);
-  
+
+
+    //Fetching details
     useEffect(() => {
         (async function () {
             let data = await fetch(`${backendUrl}/posts/postdetails/${id}`).then((results) => results.json());
           setPost(data);
-          //we passaed a parameter in the context
+          //we passed a parameter in the context
           const { count } = await getCountedFavouritesForOnePost(id)
           setFavouriteCount(count);
             // console.log("Post data", data);
         })();
-    }, []);
+    }, [myFavourites, id]);
+
+  
+    const addLike = async () => {
+    try {
+      const addlikeresponse = await fetch(`${backendUrl}/favourites/addfavourite/${id}`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`
+        },
+      });
+      getMyFavourites();
+      console.log("addlike", addlikeresponse)
+    } catch (err) {
+      console.log(err.message);
+    }
+    }
+  
+    const removeLike = async () => {
+      try {
+        const options = {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+          },
+          method: 'DELETE',
+        }
+        //postid is coming from the props not from the back-end
+        const removelikeresponse = await fetch(`${backendUrl}/favourites/deletemyfavourite/${id}`, options);
+        getMyFavourites();
+        console.log("removelike", removelikeresponse)
+      }
+      catch (error) {
+        console.log('error', error)
+      }
+    }
+  
+  const handleToggleOfFavourites = (e) => {
+    // const postid = e.target.value;
+    console.log("postid", id)
+    let favouritesArray = [...myFavourites];
+    console.log("array", favouritesArray)
+    if (favouritesArray.find(fav => fav.postid.toString() === id)) {
+      removeLike();
+    }
+    else {
+      addLike();
+    }
+  };
 
 //Styling card
 // interface ExpandMoreProps extends IconButtonProps {
@@ -64,11 +114,12 @@ const ExpandMore = styled((props) => {
   }),
 }));
     
-    const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
 
 
     return (
@@ -135,9 +186,7 @@ const ExpandMore = styled((props) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteBorderIcon />
-        </IconButton>
+      <Checkbox icon={<FavoriteBorder />} value={postid} checkedIcon={<Favorite />} onChange={handleToggleOfFavourites} checked={myFavourites.find(fav => fav.postid === postid) ? true : false} />
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
