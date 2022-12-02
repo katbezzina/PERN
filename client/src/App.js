@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import NavigationMenu from "./Components/NavigationMenu.tsx";
-
+import ProtectedRoute from "./Components/ProtectedRoute";
 import LandingPage from "./Views/LandingPage";
 import Home from "./Views/Home";
 import Login from "./Views/Login.tsx";
@@ -29,10 +29,31 @@ function App() {
             <Route path="/Login" element={<Login />} />
             <Route path="/Register" element={<Register />} />
             <Route path="/Home/:id" element={<Item />} />
-            <Route path="/MyPosting" element={<AddPost />} />
+            <Route
+              path="/MyPosting"
+              element={
+                <ProtectedRoute>
+                  <AddPost />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/MyProfile" element={<MyProfile />} />
-            <Route path="/MyPosts" element={<ViewMyPosts />} />
-            <Route path="/MyFavourites" element={<ViewMyLikes />} />
+            <Route
+              path="/MyPosts"
+              element={
+                <ProtectedRoute>
+                  <ViewMyPosts />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/MyFavourites"
+              element={
+                <ProtectedRoute>
+                  <ViewMyLikes />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </PostsContextProvider>
       </AuthContextProvider>
