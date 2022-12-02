@@ -26,6 +26,9 @@ import { PostsContext } from "../Context/PostsContext";
 
 // import MoreVertIcon from '@mui/icons-material/MoreVert';
 
+// type OnePost = { postid: number, title: string, description: string, number?: string, price?: number, postcode?: number, postimage?: string, createdat: string }
+
+
 const backendUrl = "http://localhost:5000";
 
 const Item = () => {
@@ -35,7 +38,7 @@ const Item = () => {
 
 
   let { id } = useParams();
-  let [onepost, setPost] = useState([]);
+  let [onepost, setPost] = useState();
   let [favouritecount, setFavouriteCount] = useState(null);
 
 
@@ -47,9 +50,8 @@ const Item = () => {
           //we passed a parameter in the context
           const { count } = await getCountedFavouritesForOnePost(id)
           setFavouriteCount(count);
-            // console.log("Post data", data);
         })();
-    }, [myFavourites, id]);
+    }, [myFavourites, id, getCountedFavouritesForOnePost]);
 
   
     const addLike = async () => {
@@ -86,11 +88,10 @@ const Item = () => {
     }
   
   const handleToggleOfFavourites = (e) => {
-    // const postid = e.target.value;
     console.log("postid", id)
-    let favouritesArray = [...myFavourites];
-    console.log("array", favouritesArray)
-    if (favouritesArray.find(fav => fav.postid.toString() === id)) {
+    // let favouritesArray = [...myFavourites];
+    console.log("array", myFavourites)
+    if (myFavourites.find(fav => fav.postid.toString() === id)) {
       removeLike();
     }
     else {
@@ -135,7 +136,7 @@ const ExpandMore = styled((props) => {
                         createdat,
                         price,
                         username,
-                      avatar,
+                        avatar,
                         // message, messagecreatedat
                     } = post;
     
@@ -186,7 +187,7 @@ const ExpandMore = styled((props) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-      <Checkbox icon={<FavoriteBorder />} value={postid} checkedIcon={<Favorite />} onChange={handleToggleOfFavourites} checked={myFavourites.find(fav => fav.postid === postid) ? true : false} />
+      {user ? <Checkbox icon={<FavoriteBorder />} value={postid} checkedIcon={<Favorite />} onChange={handleToggleOfFavourites} checked={myFavourites.find(fav => fav.postid === postid) ? true : false} /> : null}
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}

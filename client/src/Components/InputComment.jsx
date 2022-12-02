@@ -36,6 +36,8 @@ const onSubmitForm = async (e) => {
         <TextField
           variant="standard" className="commpentInput"
           onChange={e => setMessage(e.target.value)}
+          multiline
+          maxRows={3}
           label="Add comment"
           value={message}
               />

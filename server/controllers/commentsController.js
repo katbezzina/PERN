@@ -6,7 +6,7 @@ export const getAllComments = async (req, res) => {
   try {
     let c_postid = req.params.id;
     const response = await pool.query(
-      "SELECT username, avatar, message, messagecreatedat, comments.postid, commentid FROM users, comments WHERE comments.postid = $1 AND comments.usersid = users.id ORDER BY messagecreatedat DESC",
+      "SELECT username, avatar, message, messagecreatedat, comments.postid, comments.usersid, commentid FROM users, comments WHERE comments.postid = $1 AND comments.usersid = users.id ORDER BY messagecreatedat DESC",
       [c_postid]
     );
     // console.log("response", response.rows);
@@ -40,8 +40,31 @@ export const deleteMyComment = async (req, res) => {
       `DELETE FROM comments WHERE usersid = $1 AND commentid = $2`,
       [uid, commentid]
     );
-    res.json("my post was deleted!");
+    res.json("my comment was deleted!");
   } catch (err) {
     console.log(err.message);
   }
+};
+
+export const updateMyComment = async (req, res) => {
+  const cid = req.params.id;
+  const uid = req.user.id;
+  const { message } = req.body;
+  pool.query(
+    `UPDATE comments SET message = $1 WHERE commentid = $2 and usersid = $3;`,
+    [message, cid, uid],
+    (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({
+          error: "Database update my comment error",
+          success: false,
+        });
+      } else {
+        res.status(200).send({
+          success: true,
+        });
+      }
+    }
+  );
 };

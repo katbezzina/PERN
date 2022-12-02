@@ -18,29 +18,10 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-// export const getUserById = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     console.log("getuserbyid", id);
-//     const user = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
-//     res.status(200).json({
-//       user: user.rows[0],
-//       success: true,
-//     });
-//   } catch (error) {
-//     res.status(500).json({
-//       error: error,
-//       success: false,
-//     });
-//   }
-// };
-
 export const getMyUserProfile = async (req, res) => {
   try {
-    // console.log("uid", req.userid);
     const profileDetails = await pool.query(
-      // `SELECT avatar, username, email, name, userid FROM profiles, users WHERE profiles.userid = $1`,
-      `SELECT avatar, username, name, email FROM users WHERE id = $1`,
+      `SELECT avatar, username, name, email, id FROM users WHERE id = $1`,
       [req.user.id]
     );
     res.status(200).json(profileDetails.rows[0]);

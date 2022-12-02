@@ -4,6 +4,7 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import RiceBowlIcon from '@mui/icons-material/RiceBowl';
+import { useNavigate } from "react-router-dom";
 
 import "../Style/AddPost.css"
 
@@ -17,6 +18,7 @@ export default function AddPost() {
   const [postcode, setPostcode] = useState("");
   const [postimage, setPostImage] = useState("")
 
+   const navigate = useNavigate();
 
   const onSubmitForm = async (e: FormEvent) => {
     e.preventDefault();
@@ -30,6 +32,7 @@ export default function AddPost() {
         },
         body: JSON.stringify(body)
       });
+      navigate("/MyPosts");
       console.log(response)
     } catch (err: any) {
       console.log(err.message);
