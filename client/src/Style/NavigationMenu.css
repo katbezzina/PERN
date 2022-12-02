@@ -5,7 +5,7 @@
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
-    background-color: rgba(196, 196, 242, 0.944);
+    background-color: rgba(143, 143, 194, 0.972);
     padding: 10px;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .registerButton {
-    background-color: rgba(169, 108, 255, 0.141);
+    background-color: rgba(143, 143, 194, 0.541);
     padding: 10px;
     color: rgba(53, 52, 52, 0.843);
     border-radius: 5px;
