@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const backendUrl = "http://localhost:5000"
 
-type User = { name: string, email?: string, username?: string }
+type User = { name: string, email?: string, username?: string, avatar?: string }
 
 export type AuthContextValue = {
   user: User | null
@@ -19,11 +19,9 @@ export type AuthContextValue = {
 const initialAuth: AuthContextValue = {
   user: null,
   isLoggedIn: false,
-  // isAuthenticated: false,
   register: () => { throw new Error('register not successful.'); },
   login: () => { throw new Error('login not successful.'); },
   logout: () => { throw new Error('logout not successful.'); },
-  // setAuth: () => { throw new Error('setAuth not successful.'); },
   getUser: () => { throw new Error('not implemented.'); }
 }
 
@@ -35,10 +33,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   // ** State
   const [user, setUser] = useState<User | null>(initialAuth.user)
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  // const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  
-
-
 
   
   const getUser = async () => {
@@ -59,6 +53,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
         console.log('error', error)
       }
   }
+
     useEffect(() => {
     getUser()
   }, []);
@@ -104,37 +99,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     console.log(error)
       return { success, error }
   }
-
-    // const checkAuthenticated = async () => {
-    // try {
-    //   const res = await fetch(`${backendUrl}/users/verify`, {
-    //     method: "POST",
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //   },
-    //     // headers: { 'jwt_token': localStorage.jwt }
-    //   });
-    //   const parseRes = await res.json();
-
-    //   parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
-    // } catch (error: any) {
-    //   console.error(error.message);
-    // }
-    // };
-  
-  //   const setAuth = (boolean: boolean) => {
-  //   setIsAuthenticated(boolean);
-  // };
-  
-  // useEffect(() => {
-  //   if (user) {
-  //     checkAuthenticated();
-  //     setUser(user);
-  //     setIsLoggedIn(true);
-  //   } else {
-  //     setUser(null)
-  //   }
-  // }, []);
 
 
   return <AuthContext.Provider value={{ user, isLoggedIn, login, register, logout,  getUser }}>{children}</AuthContext.Provider>

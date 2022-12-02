@@ -1,7 +1,11 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import "../Style/Home.css";
 
-function Search({ handleChange }) {
+export type HandleChange = {
+  handleChange: (event: ChangeEvent<HTMLInputElement>) => void
+}
+
+function Search({ handleChange}: HandleChange) {
   return (
     <form className="searchButton">
       <input

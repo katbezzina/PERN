@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react'
+import React, { useState, useContext, ChangeEvent} from 'react'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -19,13 +19,17 @@ const style = {
   p: 4,
 };
 
+// export type UpdateUsernameAndAvatar = {
+//   updateUsernameAndAvatar: (e: ChangeEvent<HTMLInputElement>) => Promise<void>
+// }
+
 const UpdateProfile = ( ) => {
     const {user, getUser} = useContext(AuthContext)
-    const [username, setUsername] = useState(user.username ? user.username : "")
-    const [avatar, setAvatar] = useState(user.avatar ? user.avatar : "")
+    const [username, setUsername] = useState(user?.username ? user.username : "")
+    const [avatar, setAvatar] = useState(user?.avatar ? user.avatar : "")
 
-
-    const updateUsernameAndAvatar = async e => {
+    //may also use PointerEvent for touch screens
+    const updateUsernameAndAvatar = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=> {
         e.preventDefault();
         try {
             const backendUrl = "http://localhost:5000"
@@ -49,11 +53,11 @@ const UpdateProfile = ( ) => {
         }
     }
 
-  function handleUsernameChange(e) {
+  function handleUsernameChange(e: ChangeEvent<HTMLInputElement>) {
     setUsername(e.target.value);
   }
 
-  function handleAvatarChange(e) {
+  function handleAvatarChange(e: ChangeEvent<HTMLInputElement>) {
     setAvatar(e.target.value);
   }
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, ChangeEvent } from "react";
 import { Link } from "react-router-dom";
 // import * as React from "react";
 import Card from "@mui/material/Card";
@@ -16,14 +16,14 @@ const Home = () => {
   const { posts } = useContext(PostsContext);
   const [inputValue, setInputValue] = useState("");
 
-  function handleChange(event) {
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
     setInputValue(event.target.value);
   }
 
-  let searchedResult = posts.filter((post) => {
+  let searchedResult = posts?.filter((post) => {
     return (
-      post.title.toLowerCase().includes(inputValue.toLowerCase()) |
-      post.description.toLowerCase().includes(inputValue.toLowerCase()) |
+      post.title.toLowerCase().includes(inputValue.toLowerCase()) ||
+      post.description.toLowerCase().includes(inputValue.toLowerCase()) ||
       post.createdat.toLowerCase().includes(inputValue.toLowerCase())
     );
   });

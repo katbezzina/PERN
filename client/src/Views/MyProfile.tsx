@@ -13,18 +13,10 @@ import "../Style/MyProfile.css"
 import { AuthContext } from "../Context/AuthContext"
 import { Link } from "react-router-dom";
 
-
-// interface Profile {
-//     avatar: string
-//     username: string
-//     name: string
-//     email: string
-// }
-
 const MyProfile = () => {
 
   const {user} = useContext(AuthContext)
-  
+
 
   return (
   <div className="profileCard">

@@ -1,4 +1,4 @@
-import {useContext, useEffect} from 'react'
+import {useContext} from 'react'
 import { PostsContext } from '../Context/PostsContext'
 import Card from "@mui/material/Card";
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -11,16 +11,13 @@ import BackButton from '../Components/BackButton';
 
 const ViewMyLikes = () => {
 
-    const { getMyFavourites, myFavourites } = useContext(PostsContext)
-    
-// useEffect(() => {
-//     getMyFavourites();
-//   }, [])
+    const { myFavourites } = useContext(PostsContext)
 
   return  (
     <div className="marginTop">
-      <div></div>
-      <BackButton className="left"/>
+      <div className="left">
+        <BackButton />
+      </div>
       <Typography gutterBottom variant="h5" component="div" color="primary">
           My <FavoriteIcon/> <FavoriteIcon/> <FavoriteIcon/>
       </Typography>

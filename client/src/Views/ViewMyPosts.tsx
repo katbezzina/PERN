@@ -16,10 +16,14 @@ import DeleteMyPost from '../Components/DeleteMyPost';
 
 const backendUrl = "http://localhost:5000";
 
+type Post = { postid: number, title: string, description: string, number?: string, price?: number, postcode?: number, postimage?: string, createdat: string }
+
+type Posts = Post[]
+
 const ViewMyPosts = () => {
 
   //organise logic in one component for easy prop handling
-const [posts, setPosts] = useState([]);
+const [posts, setPosts] = useState<Posts | null>([]);
 
   const getMyPosts = async () => {
     try {
@@ -47,8 +51,9 @@ const [posts, setPosts] = useState([]);
 
   return  (
     <div className="marginTop">
-      <div></div>
-      <BackButton className="left"/>
+      <div className="left">
+        <BackButton />
+      </div>
       <Typography gutterBottom variant="h5" component="div" color="primary">
           <RiceBowlIcon />  My Posts  <RiceBowlIcon />
       </Typography>
