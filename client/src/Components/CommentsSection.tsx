@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, DetailedHTMLProps, HTMLAttributes } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
@@ -11,21 +11,22 @@ import DeleteMyComment from "./DeleteMyComment";
 const backendUrl = "http://localhost:5000";
 
 
-// type Comment = { message: String, messagecreatedat: String, username: String, avatar: String, commentid: Number, key: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> }
+type Comment = { message: string, messagecreatedat: string, username: string, avatar: string, commentid: number, usersid: number}
 
-// type Comments = Comment[]
+type Comments = Comment[]
 
-const CommentsSection = ({commentid, deleteThisComment, updateThisComment}) => {
+
+const CommentsSection = ({commentid, deleteThisComment}: any) => {
   let { id } = useParams();
   const {user} = useContext(AuthContext)
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState<Comments>([]);
 
     useEffect(() => {
         (async function () {
             let data = await fetch(`${backendUrl}/comments/getcomments/${id}`).then((results) => results.json());
             setComments(data);
         })();
-    }, []);
+    }, [id]);
 
 
   return (
@@ -35,7 +36,7 @@ const CommentsSection = ({commentid, deleteThisComment, updateThisComment}) => {
               return (
                   <div key={commentid}>
                     <div className="row" key={commentid}>
-                          <Avatar srcSet={avatar} aria-label="" />
+                          <Avatar srcSet={avatar} aria-label="" alt=""/>
                           <div>
                             <Typography variant="body1" color="text.secondary">{message}</Typography>
                             <Typography variant="body2" className="usernameSize">{username}, {messagecreatedat.substring(0, 19)}</Typography>
@@ -43,8 +44,7 @@ const CommentsSection = ({commentid, deleteThisComment, updateThisComment}) => {
                             <br />
                             
                         </div>
-                    {user && (user.id === comment.usersid) ? <DeleteMyComment commentid={commentid} onClick={deleteThisComment} /> : null}
-                    {/* {user && (user.id === comment.usersid) ? <UpdateMyComment commentid={commentid} onClick={updateThisComment} /> : null } */}
+                    {user && (user.id === comment.usersid) ? <DeleteMyComment commentid={commentid} onClickAction={deleteThisComment} /> : null}
                     </div>
                   </div>
               )

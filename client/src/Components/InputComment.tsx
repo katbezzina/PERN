@@ -6,11 +6,11 @@ import  "../Style/CommentsSection.css"
 
 const backendUrl = "http://localhost:5000";
 
-const InputComment = ({postid}) => {
+const InputComment = ({postid}: any) => {
 
 const [message, setMessage] = useState("")
 
-const onSubmitForm = async (e) => {
+const onSubmitForm = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     try {
       const body = { message };
@@ -25,8 +25,10 @@ const onSubmitForm = async (e) => {
       window.location.reload();
       console.log("add comment", response)
   
-    } catch (err) {
-      console.log(err.message);
+    } catch (error) {
+      let message = 'comment input error'
+      if (error instanceof Error) message = error.message
+      console.log(message);
     }
   }
 

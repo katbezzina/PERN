@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const backendUrl = "http://localhost:5000"
 
-type User = { name: string, email?: string, username?: string, avatar?: string }
+type User = { name: string, email?: string, username?: string, avatar?: string, id?: number }
 
 export type AuthContextValue = {
   user: User | null

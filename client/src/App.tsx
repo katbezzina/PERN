@@ -1,19 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import NavigationMenu from "./Components/NavigationMenu.tsx";
+import NavigationMenu from "./Components/NavigationMenu";
 // import ProtectedRoute from "./Components/ProtectedRoute";
 import LandingPage from "./Views/LandingPage";
 import Home from "./Views/Home";
-import Login from "./Views/Login.tsx";
-import Register from "./Views/Register.tsx";
+import Login from "./Views/Login";
+import Register from "./Views/Register";
 import Item from "./Views/Item";
-import AddPost from "./Views/AddPost.tsx";
+import AddPost from "./Views/AddPost";
 import MyProfile from "./Views/MyProfile";
 import ViewMyPosts from "./Views/ViewMyPosts";
 import ViewMyLikes from "./Views/ViewMyLikes";
 
 import { PostsContextProvider } from "./Context/PostsContext";
-import { AuthContextProvider } from "./Context/AuthContext.tsx";
+import { AuthContextProvider } from "./Context/AuthContext";
 import "./App.css";
 
 function App() {

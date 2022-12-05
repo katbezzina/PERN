@@ -1,5 +1,5 @@
 declare module "*.png";
 
-// type Post = { postid: number, title: string, description: string, number?: string, price?: number, postcode?: number, postimage?: string, createdat: string }
+type Post = { postid: number, title: string, description: string, price?: number, postcode?: number, postimage?: string, createdat: string, username?: string, avatar?: string }
 
-// type Posts = Post[]
+type Posts = Post[]

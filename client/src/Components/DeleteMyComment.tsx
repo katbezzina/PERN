@@ -4,7 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const backendUrl = "http://localhost:5000";
 
-const DeleteMyComment = ({ commentid }) => {
+const DeleteMyComment = ({ commentid }: any) => {
     
     const deleteThisComment = async () => {
       try {

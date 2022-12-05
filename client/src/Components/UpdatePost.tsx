@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, ChangeEvent, useContext } from 'react'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -8,6 +8,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import InputAdornment from '@mui/material/InputAdornment';
 
 import "../Style/NavigationMenu.css"
+import { PostsContext } from '../Context/PostsContext';
 
 const style = {
   position: "absolute",
@@ -21,15 +22,16 @@ const style = {
 };
 
 //pass postid as props to select that particular post
-const UpdatePost = ({postid}) => {
-    const [title, setTitle] = useState();
-    const [description, setDescription] = useState();
-    const [price, setPrice] = useState();
-    const [postcode, setPostcode] = useState();
-    const [postimage, setPostImage] = useState();
+const UpdatePost = ({ postid }: any) => {
+  const { post } = useContext(PostsContext);
 
+    const [title, setTitle] = useState(post?.title ? post.title : "");
+    const [description, setDescription] = useState(post?.description ? post.description : "");
+    const [price, setPrice] = useState(post?.price ? post.price : "");
+    const [postcode, setPostcode] = useState(post?.postcode ? post.postcode : "");
+    const [postimage, setPostImage] = useState(post?.postimage ? post.postimage : "");
 
-    const updateMyPost = async e => {
+    const updateMyPost = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         try {
             const backendUrl = "http://localhost:5000"
@@ -51,23 +53,23 @@ const UpdatePost = ({postid}) => {
         }
     }
 
-  function handleTitleChange(e) {
+  function handleTitleChange(e: ChangeEvent<HTMLInputElement>) {
     setTitle(e.target.value);
   }
 
-  function handleDescriptionChange(e) {
+  function handleDescriptionChange(e: ChangeEvent<HTMLInputElement>) {
     setDescription(e.target.value);
   }
     
-  function handlePriceChange(e) {
+  function handlePriceChange(e: ChangeEvent<HTMLInputElement>) {
     setPrice(e.target.value);
       }
     
-  function handlePostcodeChange(e) {
+  function handlePostcodeChange(e: ChangeEvent<HTMLInputElement>) {
     setPostcode(e.target.value);
       }
     
-  function handlePostImageChange(e) {
+  function handlePostImageChange(e: ChangeEvent<HTMLInputElement>) {
     setPostImage(e.target.value);
   }
 

@@ -1,28 +1,31 @@
 import { createContext, useState, useEffect, ReactNode } from "react";
 // import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const backendUrl = "http://localhost:5000";
 
-type Post = { postid: number, title: string, description: string, number?: string, price?: number, postcode?: number, postimage?: string, createdat: string }
+type Post = { postid: number, title: string, description: string, price?: string, postcode?: string, postimage?: string, createdat: string, username? : string, avatar? : string  }
 
 type Posts = Post[]
 
 export type PostsContextValue = {
-  // onePost: Post | null
+  post: Post | null
   posts: Posts | null
   myFavourites: Posts | null
-  // getAPost: () => void
+  favouritecount: number | null
+  getAPost: () => void
   getPosts: () => void
   getCountedFavouritesForOnePost: (postid: number) => Promise<{jsonDATA: string}>
   getMyFavourites: () => void
 }
 
 const initialAuth: PostsContextValue = {
-  // onePost: null,
+  post: null,
   posts: null,
   myFavourites: null,
-  // getAPost: () => { throw new Error ('post details failed to fetch')},
+  favouritecount: null,
+  getAPost: () => { throw new Error ('post details failed to fetch')},
   getPosts: () => { throw new Error('posts not fetched.'); },
   getCountedFavouritesForOnePost: () => { throw new Error('counted favourites for one post not fetched.'); },
   getMyFavourites: () => { throw new Error('user favourites not fetched.'); }
@@ -31,10 +34,11 @@ const initialAuth: PostsContextValue = {
 export const PostsContext = createContext<PostsContextValue>(initialAuth);
 
 export const PostsContextProvider = ({ children }: { children: ReactNode }) => {
-  //  let { id } = useParams();
-  // const [onePost, setOnePost] = useState();
+   let { id }: any = useParams();
+  const [post, setOnePost] = useState<Post | null>(null);
   const [posts, setPosts] = useState([]);
   const [myFavourites, setMyFavourites] = useState([]);
+    let [favouritecount, setFavouriteCount] = useState(null);
   //only use state once!
 
   const getPosts = async () => {
@@ -49,17 +53,6 @@ export const PostsContextProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // const getAPost = async () => {
-  //   try {
-  //     let data = await fetch(`${backendUrl}/posts/postdetails/${id}`).then((results) => results.json());
-  //     setOnePost(data)
-  //   } catch(error) {
-  //     let message = 'Did not manage to get posts'
-  //     if (error instanceof Error) message = error.message
-  //     console.log(message);
-  //   }
-  // };
-
   //passing a parameter to the fucntion
   const getCountedFavouritesForOnePost = async (postid: number) => {
     try {
@@ -70,6 +63,19 @@ export const PostsContextProvider = ({ children }: { children: ReactNode }) => {
       return jsonDATA;
     } catch (error) {
       let message = 'count of favourites for post error'
+      if (error instanceof Error) message = error.message
+      console.log(message);
+    }
+  };
+
+    const getAPost = async () => {
+    try {
+      let data = await fetch(`${backendUrl}/posts/postdetails/${id}`).then((results) => results.json());
+      setOnePost(data)
+      const { count }: any = await getCountedFavouritesForOnePost(id)
+      setFavouriteCount(count);
+    } catch(error) {
+      let message = 'Did not manage to get posts'
       if (error instanceof Error) message = error.message
       console.log(message);
     }
@@ -108,11 +114,12 @@ export const PostsContextProvider = ({ children }: { children: ReactNode }) => {
       value={{
         posts,
         myFavourites,
-        // onePost,
+        post,
+        favouritecount,
         getPosts,
         getMyFavourites,
         getCountedFavouritesForOnePost,
-        // getAPost
+        getAPost
       }}
     >
       {children}

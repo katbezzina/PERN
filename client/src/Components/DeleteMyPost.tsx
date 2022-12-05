@@ -21,7 +21,7 @@ const style = {
 
 const backendUrl = "http://localhost:5000";
 
-function DeleteMyPost({ postid }) {
+function DeleteMyPost({ postid }: any) {
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
