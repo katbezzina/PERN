@@ -8,7 +8,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import InputAdornment from '@mui/material/InputAdornment';
 
 import "../Style/NavigationMenu.css"
-import { PostsContext } from '../Context/PostsContext';
+import { Post } from '../@types';
+// import { PostsContext } from '../Context/PostsContext';
 
 const style = {
   position: "absolute",
@@ -18,12 +19,13 @@ const style = {
   width: 300,
   bgcolor: "background.paper",
   boxShadow: 24,
+  borderRadius: 3,
   p: 4,
 };
 
 //pass postid as props to select that particular post
-const UpdatePost = ({ postid }: any) => {
-  const { post } = useContext(PostsContext);
+const UpdatePost = ({ post }: {post: Post} )=> {
+  // const { post } = useContext(PostsContext);
 
     const [title, setTitle] = useState(post?.title ? post.title : "");
     const [description, setDescription] = useState(post?.description ? post.description : "");
@@ -43,7 +45,7 @@ const UpdatePost = ({ postid }: any) => {
                 method: 'PUT',
                 body: JSON.stringify({title, description, price, postcode, postimage}),
             }
-             const response =  await fetch(`${backendUrl}/posts/updatemypost/${postid}`, options)
+             const response =  await fetch(`${backendUrl}/posts/updatemypost/${post.postid}`, options)
             const { success } = await response.json()
           console.log("success update", success)
           window.location.reload();

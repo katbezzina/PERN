@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, Params } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Card from '@mui/material/Card';
@@ -23,6 +23,7 @@ import CommentsSection from "../Components/CommentsSection";
 import InputComment from "../Components/InputComment";
 import { AuthContext } from "../Context/AuthContext";
 import { PostsContext } from "../Context/PostsContext";
+import { Post } from "../@types";
 
 
 export type ToggleFunction = {
@@ -93,7 +94,7 @@ const Item = () => {
     console.log("postid", id)
     // let favouritesArray = [...myFavourites];
     console.log("array", myFavourites)
-    if (myFavourites?.find(fav => fav.postid.toString() === id)) {
+    if (myFavourites?.find(fav => fav.postid?.toString() === id)) {
       removeLike();
     }
     else {

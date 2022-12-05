@@ -1,24 +1,14 @@
 import React, { useEffect, useState } from 'react'
 // import { PostsContext } from "../Context/PostsContext"
 import axios from "axios";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import FmdGoodIcon from '@mui/icons-material/FmdGood'
 import RiceBowlIcon from '@mui/icons-material/RiceBowl';
 import "../Style/Home.css";
 import BackButton from '../Components/BackButton';
-import UpdatePost from '../Components/UpdatePost';
-import DeleteMyPost from '../Components/DeleteMyPost';
+import PostsCards from '../Components/PostsCards';
+import { Posts } from '../@types';
 
 const backendUrl = "http://localhost:5000";
-
-type Post = { postid: number, title: string, description: string, number?: string, price?: number, postcode?: number, postimage?: string, createdat: string }
-
-type Posts = Post[]
 
 const ViewMyPosts = () => {
 
@@ -35,7 +25,7 @@ const [posts, setPosts] = useState<Posts | null>([]);
       };
       const data = await axios.get(`${backendUrl}/posts/viewmyposts`, options);
       if (data.data) {
-        console.log("myposts", data.data);
+
         setPosts(data.data);
       }
     } catch (error) {
@@ -57,55 +47,7 @@ const [posts, setPosts] = useState<Posts | null>([]);
       <Typography gutterBottom variant="h5" component="div" color="primary">
           <RiceBowlIcon />  My Posts  <RiceBowlIcon />
       </Typography>
-      <div className="cardsFlex">
-        {posts &&
-          posts.map((post) => {
-            const {
-              postid,
-              title,
-              postimage,
-              description,
-              createdat,
-              price, postcode
-            } = post;
-
-            return (
-              <Card sx={{ maxWidth: 345 }} key={postid}>
-
-                <CardMedia
-                  component={"img"}
-                  alt=""
-                  height="140"
-                  image={postimage}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {createdat.substring(0, 10)}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" className="alignRight">
-                    <FmdGoodIcon fontSize="small" /> {postcode}
-                  </Typography>
-                  <br></br>
-                  <Typography variant="body2" color="text.secondary">
-                    {description}
-                  </Typography>
-                  <br></br>
-                  <Divider />
-                  <br></br>
-                  <Typography variant="body2" color="text.secondary" className="alignRight" fontSize="medium">
-                     &euro; {price}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                    <UpdatePost postid={postid}  /> {"   "} <DeleteMyPost postid={postid} />
-                </CardActions>
-                </Card>
-            );
-          })}
-      </div>
+      {posts && <PostsCards posts={posts} action detailsaction={false} />}
     </div>
   );
 }

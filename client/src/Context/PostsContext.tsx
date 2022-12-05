@@ -2,12 +2,13 @@ import { createContext, useState, useEffect, ReactNode } from "react";
 // import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Post, Posts } from "../@types";
 
 const backendUrl = "http://localhost:5000";
 
-type Post = { postid: number, title: string, description: string, price?: string, postcode?: string, postimage?: string, createdat: string, username? : string, avatar? : string  }
+// type Post = { postid: number, title: string, description: string, price?: string, postcode?: string, postimage?: string, createdat: string, username? : string, avatar? : string  }
 
-type Posts = Post[]
+// type Posts = Post[]
 
 export type PostsContextValue = {
   post: Post | null
@@ -62,7 +63,7 @@ export const PostsContextProvider = ({ children }: { children: ReactNode }) => {
       let jsonDATA = await response.json();
       return jsonDATA;
     } catch (error) {
-      let message = 'count of favourites for post error'
+      let message = 'Error: Count of favourites for post'
       if (error instanceof Error) message = error.message
       console.log(message);
     }
@@ -75,7 +76,7 @@ export const PostsContextProvider = ({ children }: { children: ReactNode }) => {
       const { count }: any = await getCountedFavouritesForOnePost(id)
       setFavouriteCount(count);
     } catch(error) {
-      let message = 'Did not manage to get posts'
+      let message = 'Error: Did not manage to get post details'
       if (error instanceof Error) message = error.message
       console.log(message);
     }
@@ -94,11 +95,10 @@ export const PostsContextProvider = ({ children }: { children: ReactNode }) => {
         options
       );
       if (data.data) {
-        console.log("myfavourites", data.data);
         setMyFavourites(data.data);
       }
     } catch (error) {
-      let message = 'favourites for user error'
+      let message = 'Error: User favourites error'
       if (error instanceof Error) message = error.message
       console.log(message);
     }
