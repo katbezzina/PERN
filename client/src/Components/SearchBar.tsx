@@ -10,7 +10,7 @@ function Search({ handleChange}: HandleChange) {
     <form className="searchButton">
       <input
         type="search"
-        placeholder="Search by title / date"
+        placeholder="Search by title/descr./date"
         onChange={handleChange}
         className="SearchBar"
       />
