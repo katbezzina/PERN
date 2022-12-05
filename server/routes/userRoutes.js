@@ -18,16 +18,13 @@ import { jwtAuth } from "../middleware/passport.js";
 const router = express.Router();
 
 router.get("/all", getAllUsers);
-// router.get("/details/:id", getUserById);
 
 //adding a validation middleware
 router.post("/register", validInfo, register);
 router.post("/login", validInfo, login);
 
-// router.get("/profile", authMiddleware, getProfile);
 router.get("/me", jwtAuth, getMyUserProfile);
 router.put("/updateUsernameAndAvatar", jwtAuth, updateUsernameAndAvatar);
-// router.post("/verify", jwtAuth, verification);
 
 // //GET route to query users table with Sequelize
 // router.get("/all", async (req, res) => {
