@@ -85,8 +85,8 @@ const Register = () => {
             <form onSubmit={handleSubmit}>
               <FormControl variant="outlined" fullWidth required>
               <TextField label='Name' variant="outlined" type="text" style={btnstyle} onChange={handleChange('name')} fullWidth required />
-              <TextField label='Username' variant="outlined" type="text" style={btnstyle} onChange={handleChange('username')} fullWidth required />
-              <TextField label='Url of your avatar' variant="outlined" style={btnstyle} type="text" multiline maxRows={2} required onChange={handleChange('avatar')} fullWidth />
+              <TextField label='Username' variant="outlined" type="text" style={btnstyle} onChange={handleChange('username')} fullWidth />
+              <TextField label='Url of your avatar' variant="outlined" style={btnstyle} type="text" multiline maxRows={2} onChange={handleChange('avatar')} fullWidth />
               <TextField label='Email address' variant="outlined" style={btnstyle} type="email" onChange={handleChange('email')}  fullWidth required />
                 <FormControl required fullWidth style={btnstyle}>
                     <InputLabel htmlFor="outlined-adornment-password" >Password</InputLabel>

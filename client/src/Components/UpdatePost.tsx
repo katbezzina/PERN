@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, useContext } from 'react'
+import React, {useState, ChangeEvent} from 'react'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -9,7 +9,6 @@ import InputAdornment from '@mui/material/InputAdornment';
 
 import "../Style/NavigationMenu.css"
 import { Post } from '../@types';
-// import { PostsContext } from '../Context/PostsContext';
 
 const style = {
   position: "absolute",
@@ -23,9 +22,8 @@ const style = {
   p: 4,
 };
 
-//pass postid as props to select that particular post
+//pass post (not postid) as props to select that particular post
 const UpdatePost = ({ post }: {post: Post} )=> {
-  // const { post } = useContext(PostsContext);
 
     const [title, setTitle] = useState(post?.title ? post.title : "");
     const [description, setDescription] = useState(post?.description ? post.description : "");
