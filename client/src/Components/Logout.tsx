@@ -19,7 +19,7 @@ const style = {
   p: 4,
 };
 
-//props?
+
 function Logout() {
   const { logout } = useContext(AuthContext);
   const [open, setOpen] = useState(false);

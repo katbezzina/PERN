@@ -16,12 +16,13 @@ const style = {
   width: 300,
   bgcolor: "background.paper",
   boxShadow: 24,
+  borderRadius: 3,
   p: 4,
 };
 
 const backendUrl = "http://localhost:5000";
 
-function DeleteMyPost({ postid }: any) {
+function DeleteMyPost({ postid }: {postid: number}) {
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);

@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
+import Avatar from "@mui/material/Avatar";
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
@@ -74,9 +75,9 @@ export default function NavigationMenu() {
           <NavLink to="/MyProfile" className="noUnderline">
             <ListItemButton>
               <ListItemIcon>
-                <Person2Icon />
+                {user.avatar ? <Avatar srcSet={user.avatar} aria-label="" alt="" sx={{ width: 28, height: 28 }}/> : <Person2Icon />}
               </ListItemIcon>
-                <ListItemText primary={"My Profile"} />
+              <ListItemText primary={"My Profile"} />
           </ListItemButton>
             </NavLink>
         <ListItemButton>

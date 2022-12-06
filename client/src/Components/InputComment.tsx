@@ -6,7 +6,7 @@ import  "../Style/CommentsSection.css"
 
 const backendUrl = "http://localhost:5000";
 
-const InputComment = ({postid}: any) => {
+const InputComment = ({postid}: {postid: number}) => {
 
 const [message, setMessage] = useState("")
 

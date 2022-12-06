@@ -191,7 +191,9 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
                 {user ? <InputComment postid={post.postid} /> : null}
                 <br />
                 <br />
-                <CommentsSection />
+                <CommentsSection deleteThisComment={function (): Promise<void> {
+                  throw new Error("Function not implemented.");
+                } } />
               </CardContent>
             </Collapse>
           </Card>

@@ -5,18 +5,15 @@ import Avatar from "@mui/material/Avatar";
 import "../Style/CommentsSection.css";
 import { AuthContext } from "../Context/AuthContext";
 import DeleteMyComment from "./DeleteMyComment";
+import { Comments } from "../@types";
 // import UpdateMyComment from "./UpdateMyComment";
 
 
 const backendUrl = "http://localhost:5000";
 
 
-type Comment = { message: string, messagecreatedat: string, username: string, avatar: string, commentid: number, usersid: number}
 
-type Comments = Comment[]
-
-
-const CommentsSection = ({commentid, deleteThisComment}: any) => {
+const CommentsSection = ({deleteThisComment}: {deleteThisComment: () => Promise<void>}) => {
   let { id } = useParams();
   const {user} = useContext(AuthContext)
   const [comments, setComments] = useState<Comments>([]);
