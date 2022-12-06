@@ -44,12 +44,12 @@ function Logout() {
           <div className="buttons">
             <button
               onClick={handleClose}
-              className="noUnderline registerButton"
+              className="noUnderline loginButton"
             >
-              No
+              No, thanks
             </button>
             <Link to="/Login">
-              <button onClick={logout} className="noUnderline loginButton">
+              <button onClick={logout} className="noUnderline registerButton">
                 Logout anyway!
               </button>
             </Link>

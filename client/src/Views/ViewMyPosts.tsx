@@ -47,7 +47,7 @@ const [posts, setPosts] = useState<Posts | null>([]);
       <Typography gutterBottom variant="h5" component="div" color="primary">
           <RiceBowlIcon />  My Posts  <RiceBowlIcon />
       </Typography>
-      {posts && <PostsCards posts={posts} action detailsaction={false} />}
+      {posts && <PostsCards posts={posts} action detailsaction={false} likeaction={false}/>}
     </div>
   );
 }

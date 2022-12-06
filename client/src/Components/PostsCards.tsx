@@ -10,9 +10,10 @@ import UpdatePost from './UpdatePost';
 import DeleteMyPost from './DeleteMyPost';
 import { Link } from "react-router-dom";
 import { Posts } from "../@types";
+import RemoveFromFavourite from "./RemoveFromFavourite";
 
 
-const PostsCards = ({posts, action, detailsaction}: {posts: Posts, action: boolean, detailsaction: boolean}) => {
+const PostsCards = ({posts, action, detailsaction, likeaction}: {posts: Posts, action: boolean, detailsaction: boolean, likeaction: boolean}) => {
 
   return  (
       <div className="cardsFlex">
@@ -37,7 +38,7 @@ const PostsCards = ({posts, action, detailsaction}: {posts: Posts, action: boole
                   image={postimage}
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography gutterBottom variant="h5" component="div" color="primary">
                     {title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
@@ -56,7 +57,8 @@ const PostsCards = ({posts, action, detailsaction}: {posts: Posts, action: boole
                   <Typography variant="body2" color="text.secondary" className="alignRight" fontSize="medium">
                      &euro; {price}
                   </Typography>
-                    </CardContent>
+                </CardContent>
+                {likeaction && <RemoveFromFavourite postid={postid}/>}
                 {action && <CardActions >
                   <UpdatePost post={post} /> {"   "} <DeleteMyPost postid={postid} />
                 </CardActions>}

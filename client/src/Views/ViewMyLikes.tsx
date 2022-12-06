@@ -17,7 +17,7 @@ const ViewMyLikes = () => {
       <Typography gutterBottom variant="h5" component="div" color="primary">
          <FavoriteIcon/> My Favourites <FavoriteIcon/>
       </Typography>
-      {myFavourites && <PostsCards posts={myFavourites} action={false} detailsaction={false} />}
+      {myFavourites && <PostsCards posts={myFavourites} action={false} detailsaction={false} likeaction/>}
     </div>
   );
 }

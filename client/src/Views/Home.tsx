@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <div className="marginTop">
       <SearchBar handleChange={handleChange} />
-      {searchedResult && <PostsCards posts={searchedResult} action={false} detailsaction />}
+      {searchedResult && <PostsCards posts={searchedResult} action={false} detailsaction likeaction={false} />}
     </div>
   );
 };

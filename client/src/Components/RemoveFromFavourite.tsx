@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import DeleteIcon from '@mui/icons-material/Delete';
 
 import "../Style/NavigationMenu.css";
+import { PostsContext } from "../Context/PostsContext";
 
 
 const style = {
@@ -22,13 +22,15 @@ const style = {
 
 const backendUrl = "http://localhost:5000";
 
-function DeleteMyPost({ postid }: {postid: number}) {
+function RemoveFromFavourite({ postid }: {postid: number}) {
+
+    const {getMyFavourites} = useContext(PostsContext)
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
     
-  const deleteThisPost = async () => {
+    const removeLike = async () => {
       try {
         const options = {
           headers: {
@@ -37,18 +39,20 @@ function DeleteMyPost({ postid }: {postid: number}) {
           method: 'DELETE',
         }
         //postid is coming from the props not from the back-end
-         await fetch(`${backendUrl}/posts/deletemypost/${postid}`, options);
-         window.location.reload();
+        await fetch(`${backendUrl}/favourites/deletemyfavourite/${postid}`, options);
+        getMyFavourites()
       }
-      catch (error) {
-        console.log('error', error)
-      }
-  }
-
+    catch (error) {
+      let message = 'Error: removing favourite failed'
+      if (error instanceof Error) message = error.message
+      console.log(message);
+    }
+    }
+  
 
     return (
     <>
-      <Button onClick={handleOpen}><DeleteIcon fontSize="small" color='secondary'/></Button>
+      <Button onClick={handleOpen}>Remove</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -57,7 +61,7 @@ function DeleteMyPost({ postid }: {postid: number}) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Are you sure you would like to delete this post?
+            Are you sure you would like to remove from favourites?
           </Typography>
           <br />
           <br />
@@ -69,8 +73,8 @@ function DeleteMyPost({ postid }: {postid: number}) {
               No, thanks
             </button>
 
-              <button onClick={deleteThisPost} className="noUnderline registerButton">
-                Delete anyway!
+              <button onClick={removeLike} className="noUnderline registerButton">
+                Yes, please
               </button>
           </div>
         </Box>
@@ -79,4 +83,4 @@ function DeleteMyPost({ postid }: {postid: number}) {
   );
 }
 
-export default DeleteMyPost;
+export default RemoveFromFavourite;

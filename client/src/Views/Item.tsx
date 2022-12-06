@@ -91,9 +91,7 @@ const Item = () => {
     }
   
   const handleToggleOfFavourites = () => {
-    console.log("postid", id)
     // let favouritesArray = [...myFavourites];
-    console.log("array", myFavourites)
     if (myFavourites?.find(fav => fav.postid?.toString() === id)) {
       removeLike();
     }
