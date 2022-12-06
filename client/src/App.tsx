@@ -11,10 +11,12 @@ import AddPost from "./Views/AddPost";
 import MyProfile from "./Views/MyProfile";
 import ViewMyPosts from "./Views/ViewMyPosts";
 import ViewMyLikes from "./Views/ViewMyLikes";
+import ScrollToTop from "./Components/ScrollToTop";
 
 import { PostsContextProvider } from "./Context/PostsContext";
 import { AuthContextProvider } from "./Context/AuthContext";
 import "./App.css";
+
 
 function App() {
   return (
@@ -22,7 +24,7 @@ function App() {
       <AuthContextProvider>
         <PostsContextProvider>
           <NavigationMenu />
-
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/Home" element={<Home />} />
