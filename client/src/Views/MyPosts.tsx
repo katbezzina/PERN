@@ -10,7 +10,7 @@ import { Posts } from '../@types';
 
 const backendUrl = "http://localhost:5000";
 
-const ViewMyPosts = () => {
+const MyPosts = () => {
 
   //organise logic in one component for easy prop handling
 const [posts, setPosts] = useState<Posts | null>([]);
@@ -52,4 +52,4 @@ const [posts, setPosts] = useState<Posts | null>([]);
   );
 }
 
-export default ViewMyPosts
+export default MyPosts

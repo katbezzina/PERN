@@ -9,8 +9,8 @@ import Register from "./Views/Register";
 import Item from "./Views/Item";
 import AddPost from "./Views/AddPost";
 import MyProfile from "./Views/MyProfile";
-import ViewMyPosts from "./Views/ViewMyPosts";
-import ViewMyLikes from "./Views/ViewMyLikes";
+import MyPosts from "./Views/MyPosts";
+import MyLikes from "./Views/MyLikes";
 import ScrollToTop from "./Components/ScrollToTop";
 
 import { PostsContextProvider } from "./Context/PostsContext";
@@ -33,8 +33,8 @@ function App() {
             <Route path="/Home/:id" element={<Item />} />
             <Route path="/MyPosting" element={<AddPost />} />
             <Route path="/MyProfile" element={<MyProfile />} />
-            <Route path="/MyPosts" element={<ViewMyPosts />} />
-            <Route path="/MyFavourites" element={<ViewMyLikes />} />
+            <Route path="/MyPosts" element={<MyPosts />} />
+            <Route path="/MyFavourites" element={<MyLikes />} />
           </Routes>
         </PostsContextProvider>
       </AuthContextProvider>

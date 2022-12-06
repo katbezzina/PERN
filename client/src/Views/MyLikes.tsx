@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import BackButton from '../Components/BackButton';
 import PostsCards from "../Components/PostsCards";
 
-const ViewMyLikes = () => {
+const MyLikes = () => {
 
     const { myFavourites } = useContext(PostsContext)
 
@@ -22,4 +22,4 @@ const ViewMyLikes = () => {
   );
 }
 
-export default ViewMyLikes
+export default MyLikes
