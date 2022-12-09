@@ -84,11 +84,11 @@ const Register = () => {
               </Grid>
             <form onSubmit={handleSubmit}>
               <FormControl variant="outlined" fullWidth required>
-              <TextField label='Name' variant="outlined" type="text" style={btnstyle} onChange={handleChange('name')} fullWidth required />
+              <TextField label='Full Name' variant="outlined" type="text" style={btnstyle} onChange={handleChange('name')} fullWidth required />
               <TextField label='Username' variant="outlined" type="text" style={btnstyle} onChange={handleChange('username')} fullWidth />
               <TextField label='Url of your avatar' variant="outlined" style={btnstyle} type="text" multiline maxRows={2} onChange={handleChange('avatar')} fullWidth />
               <TextField label='Email address' variant="outlined" style={btnstyle} type="email" onChange={handleChange('email')}  fullWidth required />
-                <FormControl required fullWidth style={btnstyle}>
+                <FormControl required fullWidth style={btnstyle} >
                     <InputLabel htmlFor="outlined-adornment-password" >Password</InputLabel>
                     <OutlinedInput
                       id="outlined-adornment-password"
@@ -111,7 +111,9 @@ const Register = () => {
                         }
                     />
                   </FormControl>
-                </FormControl>
+              </FormControl>
+            <Typography variant="body2" color="text.secondary">Password should at least 6 characters!</Typography>
+            <br /> 
                 <Button type='submit' color='primary' variant="contained" style={btnstyle} onSubmit={handleSubmit} fullWidth>Register</Button> 
               </form>
               {values.error && <Alert severity="warning">{values.error}</Alert>}

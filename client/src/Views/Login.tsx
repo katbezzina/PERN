@@ -98,13 +98,16 @@ const Login = () => {
                     label="Password"
                     />
                 </FormControl>
-                </FormControl>
+            </FormControl>
+            <br /> 
+            <br /> 
+            <br /> 
               <Button type='submit' color='primary' variant="contained" style={btnstyle} onSubmit={handleSubmit} fullWidth>Login</Button>
             </form>
             {values.error && <Alert severity="warning">{values.error}</Alert>}
                 <br></br>
                 <br></br>
-                <Typography > Don't have an account?{" "}
+                <Typography > Don't have an account yet?{" "}
                  <Link to="/Register">
                      Register 
                 </Link>

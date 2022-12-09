@@ -103,6 +103,7 @@ export const PostsContextProvider = ({ children }: { children: ReactNode }) => {
       console.log(message);
     }
   };
+  
 
   useEffect(() => {
     getPosts();
