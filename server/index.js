@@ -33,7 +33,7 @@ passportConfig(passport);
 
 // const eraseDatabaseOnSync = true;
 // sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
 app.listen(port, () => {
   console.log("Server is running on " + port + "port");

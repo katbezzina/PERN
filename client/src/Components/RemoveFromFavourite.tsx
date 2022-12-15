@@ -20,7 +20,7 @@ const style = {
   p: 4,
 };
 
-const backendUrl = "http://localhost:5000";
+const backendUrl = "https://foodcare.vercel.app";
 
 function RemoveFromFavourite({ postid }: {postid: number}) {
 

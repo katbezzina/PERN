@@ -30,7 +30,7 @@ export type ToggleFunction = {
   handleToggleOfFavourites: () => void
 }
 
-const backendUrl = "http://localhost:5000";
+const backendUrl = "https://foodcare.vercel.app";
 
 const Item = () => {
 

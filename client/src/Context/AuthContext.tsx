@@ -1,7 +1,7 @@
 import React, { createContext, useState, ReactNode, useEffect } from 'react'
 import axios from 'axios'
 
-const backendUrl = "http://localhost:5000"
+const backendUrl = "https://foodcare.vercel.app"
 
 type User = { name: string, email?: string, username?: string, avatar?: string, id?: number }
 

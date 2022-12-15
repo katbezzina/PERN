@@ -4,7 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Post, Posts } from "../@types";
 
-const backendUrl = "http://localhost:5000";
+const backendUrl = "https://foodcare.vercel.app";
 
 // type Post = { postid: number, title: string, description: string, price?: string, postcode?: string, postimage?: string, createdat: string, username? : string, avatar? : string  }
 

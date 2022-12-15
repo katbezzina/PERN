@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 import "../Style/AddPost.css"
 
-const backendUrl = "http://localhost:5000";
+const backendUrl = "https://foodcare.vercel.app";
 
 export default function AddPost() {
 

@@ -8,7 +8,7 @@ import BackButton from '../Components/BackButton';
 import PostsCards from '../Components/PostsCards';
 import { Posts } from '../@types';
 
-const backendUrl = "http://localhost:5000";
+const backendUrl = "https://foodcare.vercel.app";
 
 const MyPosts = () => {
 

@@ -2,7 +2,7 @@ import React from 'react'
 import Button from "@mui/material/Button";
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const backendUrl = "http://localhost:5000";
+const backendUrl = "https://foodcare.vercel.app";
 
 const DeleteMyComment = ({ commentid }: any) => {
     

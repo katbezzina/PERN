@@ -9,7 +9,7 @@ import { Comments } from "../@types";
 // import UpdateMyComment from "./UpdateMyComment";
 
 
-const backendUrl = "http://localhost:5000";
+const backendUrl = "https://foodcare.vercel.app";
 
 
 

@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import  "../Style/CommentsSection.css"
 
-const backendUrl = "http://localhost:5000";
+const backendUrl = "https://foodcare.vercel.app";
 
 const InputComment = ({postid}: {postid: number}) => {
 

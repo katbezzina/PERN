@@ -10,7 +10,7 @@
 //         const updateThisComment = async e => {
 //         e.preventDefault();
 //         try {
-//             const backendUrl = "http://localhost:5000"
+//             const backendUrl = "https://foodcare.vercel.app"
 //             const options = {
 //                 headers: {
 //                     'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
